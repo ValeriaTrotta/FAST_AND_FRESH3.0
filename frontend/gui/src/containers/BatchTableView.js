@@ -1,6 +1,6 @@
 import React from "react";
-import Batches from "../components/Batch";
-import BatchForm from "../components/BatchForm";
+import Batches from "../components/Entidades/Batch";
+import BatchCreateForm from "../components/CreateForms/BatchCreateForm";
 import axios from "axios";
 
 class BatchTable extends React.Component {
@@ -20,7 +20,7 @@ class BatchTable extends React.Component {
       <div>
         <Batches data={this.state.batches} />
         <h2>Create Batch</h2>
-        {/* <BatchForm requestType="post" btnText="Add" batchID={null} /> */}
+        <BatchCreateForm requestType="post" btnText="Add" batchID={null} />
       </div>
     );
   }

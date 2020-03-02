@@ -4,6 +4,6 @@
   "python.linting.pylintEnabled": true,
   "team.showWelcomeMessage": false,
   "editor.formatOnSave": true,
-  "python.linting.pep8Enabled": true,
+  "python.linting.pycodestyleEnabled": true,
   "python.linting.pylintArgs": ["--load-plugins=pylint_django"]
 }

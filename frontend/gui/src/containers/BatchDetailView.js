@@ -1,7 +1,7 @@
 import React from "react";
 import axios from "axios";
 import { Card } from "antd";
-import BatchForm from "../components/BatchForm";
+import BatchCreateForm from "../components/CreateForms/BatchCreateForm";
 
 class BatchDetail extends React.Component {
   state = {
@@ -24,7 +24,7 @@ class BatchDetail extends React.Component {
           <h3>Is it Special: {this.state.batch.is_special}</h3>
           <h3>Is it Active?: {this.state.batch.is_active}</h3>
         </Card>
-        <BatchForm
+        <BatchCreateForm
           requestType="put"
           btnText="Modify"
           batchID={this.state.batch.id}

@@ -28,7 +28,7 @@ def _deactivate(args):
 _deactivate(["nondestructive"])
 aliases["deactivate"] = _deactivate
 
-$VIRTUAL_ENV = r"/Users/macbookpro/Desktop/FAST_AND_FRESH3.0/backend/env"
+$VIRTUAL_ENV = r"/Users/Veka/Desktop/FAST_AND_FRESH3.0/backend/env"
 
 $_OLD_VIRTUAL_PATH = $PATH
 $PATH = $PATH[:]

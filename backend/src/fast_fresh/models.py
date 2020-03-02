@@ -26,9 +26,6 @@ class Batch (models.Model):
     store = models.ForeignKey(
         'Store', on_delete=models.CASCADE, null=False, blank=False)
 
-    def __str__(self):
-        return self.product_name
-
 
 class Type_Of_Product (models.Model):
     type = models.CharField(max_length=50)
