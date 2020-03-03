@@ -3,7 +3,8 @@ from django.contrib import admin
 from django.urls import path, include
 from fast_fresh.api.views import (top_5_productos_mas_vendidos,
                                   top_5_productos_menos_vendidos,
-                                  top_5_productos_mas_vendidos_miembros)
+                                  top_5_productos_mas_vendidos_miembros,
+                                  lista_productos_mas_perdidas)
 
 urlpatterns = [
     path('api-auth/', include('rest_framework.urls')),
@@ -13,4 +14,5 @@ urlpatterns = [
     path('top_5_productos_menos_vendidos/', top_5_productos_menos_vendidos),
     path('top_5_productos_mas_vendidos_miembros/',
          top_5_productos_mas_vendidos_miembros),
+    path('lista_productos_mas_perdidas/', lista_productos_mas_perdidas),
 ]

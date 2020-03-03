@@ -467,3 +467,32 @@ def top_5_productos_mas_vendidos_miembros(request):
     }
 
     return JsonResponse(data)
+
+    # Lista completa de productos que dan perdida de mayor a menor
+
+
+def lista_productos_mas_perdidas(request):
+
+    # Un JSON se establece con {}
+
+    arreglo = []
+    cantidad = []
+
+    query = Batch.objects.values('product_name__product_name').annotate(
+        a=Sum('units_lost')).order_by('-a')
+
+    for x in query:
+        arreglo.append(x['product_name__product_name'])
+        cantidad.append(x['a'])
+
+    b = []
+
+    for x in range(len(arreglo)):
+        c = {'producto': arreglo[x], 'cantidad': cantidad[x]}
+        b.append(c)
+
+    data = {
+        'algo': b,
+    }
+
+    return JsonResponse(data)
