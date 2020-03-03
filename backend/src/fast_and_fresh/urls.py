@@ -1,14 +1,16 @@
 
 from django.contrib import admin
 from django.urls import path, include
-from fast_fresh.api.views import query_set_1, query_set_2, query_set_3
+from fast_fresh.api.views import (top_5_productos_mas_vendidos,
+                                  top_5_productos_menos_vendidos,
+                                  top_5_productos_mas_vendidos_miembros)
 
 urlpatterns = [
     path('api-auth/', include('rest_framework.urls')),
     path('admin/', admin.site.urls),
     path('api/', include('fast_fresh.api.urls')),
-    path('QUERIES_1/', query_set_1),
-    path('QUERIES_2/', query_set_2),
-    path('QUERIES_3/', query_set_3),
-    path('QUERIES_3/<MesI>/<MesF>', query_set_3),
+    path('top_5_productos_mas_vendidos/', top_5_productos_mas_vendidos),
+    path('top_5_productos_menos_vendidos/', top_5_productos_menos_vendidos),
+    path('top_5_productos_mas_vendidos_miembros/',
+         top_5_productos_mas_vendidos_miembros),
 ]
