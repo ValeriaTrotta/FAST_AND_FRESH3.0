@@ -17,6 +17,11 @@ const columns = [
     dataIndex: "hired_date",
     key: "hired_date" + "id"
   },
+  {
+    title: "Activo",
+    dataIndex: "is_active",
+    key: "is_active" + "id"
+  },
 
   {
     title: "View",

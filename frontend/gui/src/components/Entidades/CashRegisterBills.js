@@ -12,6 +12,11 @@ const columns = [
     dataIndex: "bill",
     key: "bill" + "id"
   },
+  {
+    title: "Activo",
+    dataIndex: "is_active",
+    key: "is_active" + "id"
+  },
 
   {
     title: "View",

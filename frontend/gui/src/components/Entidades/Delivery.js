@@ -37,6 +37,11 @@ const columns = [
     dataIndex: "address",
     key: "address" + "id"
   },
+  {
+    title: "Activo",
+    dataIndex: "is_active",
+    key: "is_active" + "id"
+  },
 
   {
     title: "View",

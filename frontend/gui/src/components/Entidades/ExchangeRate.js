@@ -23,7 +23,7 @@ const columns = [
     key: "exchange_rate_date" + "id"
   },
   {
-    title: "Producto Activo",
+    title: "Activo",
     dataIndex: "is_active",
     key: "is_active" + "id"
   },

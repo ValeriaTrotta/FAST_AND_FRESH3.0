@@ -8,39 +8,39 @@ const columns = [
     key: "id"
   },
   {
-    title: "Client Name",
+    title: "Name",
     dataIndex: "client_name",
     key: "client_name" + "id"
   },
   {
-    title: "Client Last Name",
+    title: "Last Name",
     dataIndex: "client_last_name",
     key: "client_last_name" + "id"
   },
   {
-    title: "Client Cedula",
-    tags: ["client_cedula"],
+    title: "Cedula",
+    dataIndex: "client_cedula",
     key: "client_cedula" + "id"
   },
   {
-    title: "Client Phone",
-    tags: ["client_phone"],
+    title: "Phone",
+    dataIndex: "client_phone",
     key: "client_phone" + "id"
   },
   {
-    title: "Client Phone",
-    tags: ["client_phone"],
-    key: "client_phone" + "id"
-  },
-  {
-    title: "Client Gender",
-    tags: ["client_gender"],
+    title: "Gender",
+    dataIndex: "client_gender",
     key: "client_gender" + "id"
   },
   {
-    title: "Client Zona",
-    tags: ["client_zona"],
-    key: "client_zona" + "id"
+    title: "Zona",
+    dataIndex: "zona",
+    key: "ona" + "id"
+  },
+  {
+    title: "Activo",
+    dataIndex: "is_active",
+    key: "is_active" + "id"
   },
   {
     title: "View",

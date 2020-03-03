@@ -23,7 +23,7 @@ const columns = [
     key: "start_date" + "id"
   },
   {
-    title: "Boss Activo",
+    title: "Activo",
     dataIndex: "is_active",
     key: "is_active" + "id"
   },
