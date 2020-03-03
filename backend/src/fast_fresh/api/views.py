@@ -2,6 +2,16 @@ from rest_framework import viewsets, permissions
 from fast_fresh.models import Product, Provider, ProviderPhone, EmployeeStore, StoreBoss, Client, Member, Zona, City, State, Payment, Product_Type, Type_Of_Product, Batch, Store, Delivery, PickUp, Bill, BillDetails, Currency, ExchangeRate, CashRegister, CashRegisterBills, PaymentMethod, Employee, Job, IVA
 from .serializers import ProductSerializer, ClientSerializer, MemberSerializer, ZonaSerializer, CitySerializer, StateSerializer, PaymentSerializer, Product_TypeSerializer, Type_Of_ProductSerializer, BatchSerializer, StoreSerializer, DeliverySerializer, PickUpSerializer, BillSerializer, BillDetailsSerializer, CurrencySerializer, ExchangeRateSerializer, CashRegisterSerializer,  PaymentMethodSerializer, EmployeeSerializer, JobSerializer, IVASerializer, StoreBossSerializer, CashRegisterBillsSerializer, EmployeeStoreSerializer, ProviderSerializer, ProviderPhoneSerializer
 
+# Importaciones de Tutu:
+from django.http import HttpResponse
+from rest_framework.response import Response
+from rest_framework.decorators import api_view
+from django.http import JsonResponse
+from rest_framework.generics import ListAPIView, RetrieveAPIView
+from rest_framework import viewsets
+from rest_framework.filters import SearchFilter
+from django.views.generic import View
+from django.db.models import Sum, Count
 
 class ProductViewSet(viewsets.ModelViewSet):
     queryset = Product.objects.all()
@@ -217,3 +227,17 @@ class ProviderPhoneViewSet(viewsets.ModelViewSet):
         permissions.AllowAny
     ]
     serializer_class = ProviderPhoneSerializer
+
+#   QUERIES ----------------------------------------------------------------------
+
+def query_set_1(request,*args, **kwargs):
+    query = Product.objects.filter(is_active=0)
+    return HttpResponse(query)
+
+def query_set_2(request,*args, **kwargs):
+    query = Batch.objects.values('product_name__product_name', 'units_sold').order_by('-units_sold')[0:1] #Para referenciar a otra tabla se pone "__"
+    return HttpResponse(query)                                                                            #Ej: product_name__product_name
+
+def query_set_3(request,*args, **kwargs):
+    query = Batch.objects.values('product_name__product_name', 'units_sold').filter(product_name__product_name__startswith="Almendras")
+    return HttpResponse(query)
