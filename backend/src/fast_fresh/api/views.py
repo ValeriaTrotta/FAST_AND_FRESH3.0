@@ -279,3 +279,13 @@ class ProviderPhoneViewSet(viewsets.ModelViewSet):
         permissions.AllowAny
     ]
     serializer_class = ProviderPhoneSerializer
+
+
+# Edades mas comunes
+
+# class Edades_Comunes(viewsets.ModelViewSet):
+#     serializer_class = MemberSerializer
+#     filter_backends = [SearchFilter]
+#     search_fields = ['member_birth_date']
+
+#     def top5(request):
