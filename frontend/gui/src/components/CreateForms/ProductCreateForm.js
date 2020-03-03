@@ -7,6 +7,9 @@ const { Option } = Select;
 function onChange(value) {
   console.log("changed", value);
 }
+function onSearch(val) {
+  console.log("search:", val);
+}
 
 class ProductCreateForm extends React.Component {
   formRef = React.createRef();
@@ -66,13 +69,7 @@ class ProductCreateForm extends React.Component {
       <Form
         ref={this.formRef}
         name="control-ref"
-        onFinish={event =>
-          this.handleFormSubmit(
-            event,
-            this.props.requestType,
-            this.props.productID
-          )
-        }
+        onFinish={event => this.handleFormSubmit(event)}
       >
         <Form.Item
           name="Nombre"
@@ -82,7 +79,6 @@ class ProductCreateForm extends React.Component {
             }
           ]}
           label="Nombre"
-          key={this.state.currProd.product_name}
         >
           <Input name="name" placeholder="Nombre del producto" />
         </Form.Item>
@@ -95,12 +91,15 @@ class ProductCreateForm extends React.Component {
               required: true
             }
           ]}
-          key={this.state.currProd.provider}
         >
           <Select
+            showSearch
             name="provider"
             placeholder="Selecciona un proveedor"
-            allowClear
+            onSearch={onSearch}
+            filterOption={(input, option) =>
+              option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
+            }
           >
             {this.state.providers.map(provs => (
               <Option value={provs.id} key={provs.provider_name}>
@@ -141,7 +140,7 @@ class ProductCreateForm extends React.Component {
         <br />
         <Form.Item>
           <Button type="primary" htmlType="submit">
-            {this.props.btnText}
+            Create
           </Button>
         </Form.Item>
       </Form>
