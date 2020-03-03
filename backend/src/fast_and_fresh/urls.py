@@ -14,3 +14,4 @@ urlpatterns = [
     path('top_5_productos_mas_vendidos_miembros/',
          top_5_productos_mas_vendidos_miembros),
 ]
+
