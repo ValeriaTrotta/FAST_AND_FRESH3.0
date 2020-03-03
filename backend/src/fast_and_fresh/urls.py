@@ -5,7 +5,8 @@ from fast_fresh.api.views import (top_5_productos_mas_vendidos,
                                   top_5_productos_menos_vendidos,
                                   top_5_productos_mas_vendidos_miembros,
                                   lista_productos_mas_perdidas,
-                                  sucursal_mas_ventas)
+                                  sucursal_mas_ventas,
+                                  productos_especiales)
 
 urlpatterns = [
     path('api-auth/', include('rest_framework.urls')),
@@ -17,4 +18,5 @@ urlpatterns = [
          top_5_productos_mas_vendidos_miembros),
     path('lista_productos_mas_perdidas/', lista_productos_mas_perdidas),
     path('sucursal_mas_ventas/', sucursal_mas_ventas),
+    path('productos_especiales/', productos_especiales),
 ]

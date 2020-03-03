@@ -497,8 +497,8 @@ def lista_productos_mas_perdidas(request):
 
     return JsonResponse(data)
 
-    # Sucursal con más ventas
 
+# Sucursal con más ventas
 
 def sucursal_mas_ventas(request):
 
@@ -518,6 +518,32 @@ def sucursal_mas_ventas(request):
 
     for x in range(len(arreglo)):
         c = {'Sucursal': arreglo[x], 'Cantidad': cantidad[x]}
+        b.append(c)
+
+    data = {
+        'algo': b,
+    }
+
+    return JsonResponse(data)
+
+
+# Productos Especiales
+
+def productos_especiales(request):
+
+    # Un JSON se establece con {}
+
+    arreglo = []
+
+    query = Product.objects.values('product_name').filter(is_special=1)
+
+    for x in query:
+        arreglo.append(x['product_name'])
+
+    b = []
+
+    for x in range(len(arreglo)):
+        c = {'Producto Especial': arreglo[x]}
         b.append(c)
 
     data = {
