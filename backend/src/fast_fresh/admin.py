@@ -1,5 +1,29 @@
 from django.contrib import admin
-from .models import Product, Client, Provider, ProviderPhone, Member, Zona, City, State, Payment, EmployeeStore, Product_Type, Type_Of_Product, Batch, Store, StoreBoss, Delivery, PickUp, Bill, BillDetails, Currency, ExchangeRate, CashRegister, PaymentMethod, Employee, Job, IVA, ProviderPhone, CashRegisterBills
+from fast_fresh.models import (Product,
+                               Provider,
+                               ProviderPhone,
+                               EmployeeStore,
+                               StoreBoss,
+                               Client,
+                               Member,
+                               Zona,
+                               City,
+                               State,
+                               Payment,
+                               Product_Type,
+                               Type_Of_Product,
+                               Batch, Store,
+                               Delivery,
+                               PickUp, Bill,
+                               BillDetails,
+                               Currency,
+                               ExchangeRate,
+                               CashRegister,
+                               CashRegisterBills,
+                               PaymentMethod,
+                               Employee,
+                               Job,
+                               IVA)
 
 
 class ProductAdmin(admin.ModelAdmin):
@@ -9,7 +33,9 @@ class ProductAdmin(admin.ModelAdmin):
 
 class BatchAdmin(admin.ModelAdmin):
     list_display = ('id', 'product_name', 'units', 'elaboration_date',
-                    'expiration_date', 'price_dolars_u', 'units_sold', 'units_lost', 'discount', 'price_points', 'store', 'is_active')
+                    'expiration_date', 'price_dolars_u', 'units_sold',
+                    'units_lost', 'discount', 'price_points', 'store',
+                    'is_active')
 
 
 class Type_of_Product_Admin(admin.ModelAdmin):
@@ -22,12 +48,14 @@ class Product_Type_Admin(admin.ModelAdmin):
 
 class ClientAdmin(admin.ModelAdmin):
     list_display = ('id', 'client_name', 'client_last_name',
-                    'client_cedula', 'client_phone', 'client_gender', 'zona', 'is_active')
+                    'client_cedula', 'client_phone', 'client_gender',
+                    'zona', 'is_active')
 
 
 class MemberAdmin(admin.ModelAdmin):
     list_display = ('id', 'client', 'member_points', 'member_start_date',
-                    'member_pay_date', 'member_birth_date', 'member_email', 'is_active')
+                    'member_pay_date', 'member_birth_date', 'member_email',
+                    'is_active')
 
 
 class ZonaAdmin(admin.ModelAdmin):
@@ -53,7 +81,9 @@ class StoreBossAdmin (admin.ModelAdmin):
 
 class DeliveryAdmin(admin.ModelAdmin):
     list_display = ('id', 'delivery_price',
-                    'employee', 'bill_id', 'delivery_status', 'zona', 'address', 'is_active')
+                    'employee', 'bill_id', 'delivery_status', 'zona',
+                    'address',
+                    'is_active')
 
 
 class PickUpAdmin(admin.ModelAdmin):
@@ -62,7 +92,8 @@ class PickUpAdmin(admin.ModelAdmin):
 
 class BillAdmin(admin.ModelAdmin):
     list_display = ('id', 'client_id', 'bill_sub_total',
-                    'bill_iva', 'bill_date', 'bill_time', 'bill_earned_points', 'bill_delivery', 'bill_pickup', 'is_active')
+                    'bill_iva', 'bill_date', 'bill_time', 'bill_earned_points',
+                    'bill_delivery', 'bill_pickup', 'is_active')
 
 
 class BillDetailsAdmin(admin.ModelAdmin):
@@ -96,8 +127,10 @@ class ExchangeRateAdmin (admin.ModelAdmin):
 
 
 class EmployeeAdmin(admin.ModelAdmin):
-    list_display = ('id', 'employee_name', 'employee_last_name', 'employee_cedula', 'employee_gender',
-                    'employee_birth_date', 'employee_phone',  'employee_job', 'salary_bonus', 'employee_email', 'is_active')
+    list_display = ('id', 'employee_name', 'employee_last_name',
+                    'employee_cedula', 'employee_gender',
+                    'employee_birth_date', 'employee_phone',  'employee_job',
+                    'salary_bonus', 'employee_email', 'is_active')
 
 
 class EmployeeStoreAdmin(admin.ModelAdmin):
