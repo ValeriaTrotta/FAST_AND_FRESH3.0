@@ -1,39 +1,3 @@
-from django.shortcuts import render
-from rest_framework.response import Response
-from rest_framework.decorators import api_view
-from django.http import JsonResponse
-from rest_framework.generics import ListAPIView, RetrieveAPIView
-from rest_framework import viewsets, permissions
-from rest_framework.filters import SearchFilter
-from django.views.generic import View
-from django.db.models import Sum, Count
-from django.http import HttpResponse
-
-from fast_fresh.models import (Product,
-                               Provider,
-                               ProviderPhone,
-                               EmployeeStore,
-                               StoreBoss,
-                               Client,
-                               Member,
-                               Zona,
-                               City,
-                               State,
-                               Payment,
-                               Product_Type,
-                               Type_Of_Product,
-                               Batch, Store,
-                               Delivery,
-                               PickUp, Bill,
-                               BillDetails,
-                               Currency,
-                               ExchangeRate,
-                               CashRegister,
-                               CashRegisterBills,
-                               PaymentMethod,
-                               Employee,
-                               Job,
-                               IVA)
 from .serializers import (ProductSerializer,
                           ClientSerializer,
                           MemberSerializer,
@@ -61,6 +25,48 @@ from .serializers import (ProductSerializer,
                           EmployeeStoreSerializer,
                           ProviderSerializer,
                           ProviderPhoneSerializer)
+from fast_fresh.models import (Product,
+                               Provider,
+                               ProviderPhone,
+                               EmployeeStore,
+                               StoreBoss,
+                               Client,
+                               Member,
+                               Zona,
+                               City,
+                               State,
+                               Payment,
+                               Product_Type,
+                               Type_Of_Product,
+                               Batch, Store,
+                               Delivery,
+                               PickUp, Bill,
+                               BillDetails,
+                               Currency,
+                               ExchangeRate,
+                               CashRegister,
+                               CashRegisterBills,
+                               PaymentMethod,
+                               Employee,
+                               Job,
+                               IVA)
+from django.http import HttpResponse
+from django.db.models import Sum, Count
+from django.views.generic import View
+from rest_framework.filters import SearchFilter
+from rest_framework import viewsets, permissions
+from rest_framework.generics import ListAPIView, RetrieveAPIView
+from django.http import JsonResponse
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
+from django.shortcuts import render
+<< << << < HEAD
+== == == =
+
+>>>>>> > tutu
+
+
+# Importaciones de Tutu:
 
 
 class ProductViewSet(viewsets.ModelViewSet):
@@ -358,3 +364,46 @@ def get_queryset(request, *args, **kwargs):
     #     mayorrr = 'no marzo'
 
     return HttpResponse(str(meses[z])+': '+str(mayor))
+# QUERIES ------------------------------------------------------------------
+# -----------------------------------------------------------
+
+
+def query_set_1(request, *args, **kwargs):
+    query = Product.objects.filter(is_active=0)
+    return HttpResponse(query)
+
+
+def query_set_2(request, *args, **kwargs):
+    query = Batch.objects.values('product_name__product_name',
+                                 'units_sold').order_by('-units_sold')[0:1]
+    # Para referenciar a otra tabla se pone "__"
+    return HttpResponse(query)  # Ej: product_name__product_name
+
+
+# Top 5 productos más vendidos (Analizando los productos vendidos de
+# cada batch). Suma las unidades vendidas de los batchs con el mismo nombre
+def query_set_3(request, *args, **kwargs):
+
+    # Un JSON se establece con {}
+
+    arreglo = []
+    cantidad = []
+
+    query = Batch.objects.values('product_name__product_name').annotate(
+        a=Sum('units_sold')).order_by('-a')[0:5]
+
+    for x in query:
+        arreglo.append(x['product_name__product_name'])
+        cantidad.append(x['a'])
+
+    b = []
+
+    for x in range(len(arreglo)):
+        c = {'producto': arreglo[x], 'cantidad': cantidad[x]}
+        b.append(c)
+
+    data = {
+        'algo': b,
+    }
+
+    return JsonResponse(data)

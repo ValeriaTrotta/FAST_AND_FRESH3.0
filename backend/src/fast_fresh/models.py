@@ -1,16 +1,27 @@
+
 from django.db import models
+
+# VAN A HABER MERGE CONFLICTS. ACEPTAR LOS DE "tutu"
 
 
 class Product (models.Model):
     product_name = models.CharField(max_length=30, null=True)
     is_special = models.BooleanField()
     is_active = models.BooleanField()
-    provider = models.ForeignKey(
-        'Provider', on_delete=models.CASCADE, null=False, blank=False)
-    is_active = models.BooleanField()
 
-    def __str__(self):
-        return self.product_name
+
+<< << << < HEAD
+provider = models.ForeignKey(
+    'Provider', on_delete=models.CASCADE, null=False, blank=False)
+is_active = models.BooleanField()
+== == == =
+provider = models.ForeignKey(
+    'Provider', on_delete=models.CASCADE, null=False, blank=False)
+>>>>>> > tutu
+
+
+def __str__(self):
+    return self.product_name
 
 
 class Batch (models.Model):
@@ -24,9 +35,17 @@ class Batch (models.Model):
     units_lost = models.IntegerField(default=0)
     discount = models.FloatField(default=0)
     price_points = models.IntegerField(default=0)
-    store = models.ForeignKey(
-        'Store', on_delete=models.CASCADE, null=False, blank=False)
-    is_active = models.BooleanField()
+
+
+<< << << < HEAD
+store = models.ForeignKey(
+    'Store', on_delete=models.CASCADE, null=False, blank=False)
+is_active = models.BooleanField()
+
+== == == =
+store = models.ForeignKey(
+    'Store', on_delete=models.CASCADE, null=False, blank=False)
+>>>>>> > tutu
 
 
 class Type_Of_Product (models.Model):
@@ -42,7 +61,6 @@ class Product_Type (models.Model):
         'Product', on_delete=models.CASCADE, null=False, blank=False)
     type_of_product = models.ForeignKey(
         'Type_Of_Product', on_delete=models.CASCADE, null=False, blank=False)
-    is_active = models.BooleanField()
 
 
 class Client (models.Model):
@@ -50,26 +68,24 @@ class Client (models.Model):
     client_name = models.CharField(max_length=100)
     client_last_name = models.CharField(max_length=100)
     client_cedula = models.IntegerField(null=True, unique=True)
-    client_phone = models.CharField(max_length=11)
+    client_phone = models.IntegerField(null=True)
     client_gender = models.CharField(
         max_length=1, choices=GENDER, blank=False, null=False)
     zona = models.ForeignKey(
         'Zona', on_delete=models.CASCADE, null=False, blank=False)
-    is_active = models.BooleanField()
 
     def __str__(self):
         return self.client_name
 
 
 class Member (models.Model):
-
     member_points = models.IntegerField(default=0)
     member_email = models.EmailField()
     member_start_date = models.DateField(auto_now_add=True)
     member_pay_date = models.DateField()
     client = models.OneToOneField(
         'Client', on_delete=models.CASCADE, null=False, blank=False)
-    is_active = models.BooleanField(default=True)
+    is_active = models.BooleanField()
     member_birth_date = models.DateField()
 
 
@@ -144,7 +160,6 @@ class PickUp (models.Model):
         max_length=15, choices=STATUS, blank=False, null=False)
     bill_id = models.ForeignKey(
         'Bill', on_delete=models.CASCADE, null=False, blank=False)
-    is_active = models.BooleanField()
 
 
 class Bill (models.Model):
@@ -191,7 +206,6 @@ class Payment(models.Model):
     payment_method_instrument = models.IntegerField(null=True)
     bill = models.ForeignKey(
         'Bill', on_delete=models.CASCADE, null=False, blank=False)
-    is_active = models.BooleanField()
 
 
 class PaymentMethod (models.Model):
@@ -226,6 +240,7 @@ class Employee (models.Model):
     employee_phone = models.IntegerField()
     employee_job = models.ForeignKey(
         'Job', on_delete=models.CASCADE, null=False, blank=False)
+    is_active = models.BooleanField()
     salary_bonus = models.IntegerField()
     employee_email = models.EmailField()
     is_active = models.BooleanField()
