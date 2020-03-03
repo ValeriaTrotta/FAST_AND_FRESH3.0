@@ -8,20 +8,11 @@ class Product (models.Model):
     product_name = models.CharField(max_length=30, null=True)
     is_special = models.BooleanField()
     is_active = models.BooleanField()
+    provider = models.ForeignKey(
+        'Provider', on_delete=models.CASCADE, null=False, blank=False)
 
-
-<< << << < HEAD
-provider = models.ForeignKey(
-    'Provider', on_delete=models.CASCADE, null=False, blank=False)
-is_active = models.BooleanField()
-== == == =
-provider = models.ForeignKey(
-    'Provider', on_delete=models.CASCADE, null=False, blank=False)
->>>>>> > tutu
-
-
-def __str__(self):
-    return self.product_name
+    def __str__(self):
+        return self.product_name
 
 
 class Batch (models.Model):
@@ -35,17 +26,9 @@ class Batch (models.Model):
     units_lost = models.IntegerField(default=0)
     discount = models.FloatField(default=0)
     price_points = models.IntegerField(default=0)
-
-
-<< << << < HEAD
-store = models.ForeignKey(
-    'Store', on_delete=models.CASCADE, null=False, blank=False)
-is_active = models.BooleanField()
-
-== == == =
-store = models.ForeignKey(
-    'Store', on_delete=models.CASCADE, null=False, blank=False)
->>>>>> > tutu
+    store = models.ForeignKey(
+        'Store', on_delete=models.CASCADE, null=False, blank=False)
+    is_active = models.BooleanField()
 
 
 class Type_Of_Product (models.Model):
@@ -61,6 +44,7 @@ class Product_Type (models.Model):
         'Product', on_delete=models.CASCADE, null=False, blank=False)
     type_of_product = models.ForeignKey(
         'Type_Of_Product', on_delete=models.CASCADE, null=False, blank=False)
+    is_active = models.BooleanField()
 
 
 class Client (models.Model):
@@ -69,6 +53,7 @@ class Client (models.Model):
     client_last_name = models.CharField(max_length=100)
     client_cedula = models.IntegerField(null=True, unique=True)
     client_phone = models.IntegerField(null=True)
+    is_active = models.BooleanField()
     client_gender = models.CharField(
         max_length=1, choices=GENDER, blank=False, null=False)
     zona = models.ForeignKey(
@@ -204,6 +189,7 @@ class Payment(models.Model):
     payment_method = models.ForeignKey(
         'PaymentMethod', on_delete=models.CASCADE, null=False, blank=False)
     payment_method_instrument = models.IntegerField(null=True)
+    is_active = models.BooleanField()
     bill = models.ForeignKey(
         'Bill', on_delete=models.CASCADE, null=False, blank=False)
 
