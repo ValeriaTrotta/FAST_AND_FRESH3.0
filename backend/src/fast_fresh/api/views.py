@@ -554,7 +554,7 @@ def productos_especiales(request):
 
 
 # Productos y cantidad de vendidos de un día
-def ventas_diarias(request):
+def ventas_diarias(request, dia, mes, ano):
 
     # Un JSON se establece con {}
 
@@ -564,9 +564,9 @@ def ventas_diarias(request):
     query = BillDetails.objects.values(
         'product_batch_id__product_name__product_name').annotate(
         a=Sum('product_quantity')).filter(
-            bill_id__bill_date__year='2020',
-            bill_id__bill_date__month='03',
-            bill_id__bill_date__day='04').order_by('-a')
+            bill_id__bill_date__year=ano,
+            bill_id__bill_date__month=mes,
+            bill_id__bill_date__day=dia).order_by('-a')
 
     for x in query:
         arreglo.append(x['product_batch_id__product_name__product_name'])
