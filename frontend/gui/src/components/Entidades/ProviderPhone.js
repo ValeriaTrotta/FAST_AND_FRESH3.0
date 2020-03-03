@@ -3,14 +3,9 @@ import { Table } from "antd";
 
 const columns = [
   {
-    title: "Product ID",
+    title: "Provider's Phone ID",
     dataIndex: "id",
     key: "id"
-  },
-  {
-    title: "Product Name",
-    dataIndex: "product_name",
-    key: "product_name" + "id"
   },
   {
     title: "Provider",
@@ -18,15 +13,16 @@ const columns = [
     key: "provider" + "id"
   },
   {
-    title: "Producto Especial",
-    tags: ["is_special"],
-    key: "is_special" + "id"
+    title: "Phone",
+    dataIndex: "provider_phone_number",
+    key: "provider_phone_number" + "id"
   },
   {
-    title: "Producto Activo",
-    tags: ["is_active"],
+    title: "Activo",
+    dataIndex: "is_active",
     key: "is_active" + "id"
   },
+
   {
     title: "View",
     key: "operation",
@@ -36,9 +32,8 @@ const columns = [
   }
 ];
 
-const Products = props => {
-  const lista = props.data.map;
+const ProviderPhones = props => {
   return <Table dataSource={props.data} columns={columns} />;
 };
 
-export default Products;
+export default ProviderPhones;

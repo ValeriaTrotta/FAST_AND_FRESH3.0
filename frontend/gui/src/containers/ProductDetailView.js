@@ -1,8 +1,8 @@
 import React from "react";
-import Products from "../components/Product";
+import Products from "../components/Entidades/Product";
 import axios from "axios";
 import { Card } from "antd";
-import ProductForm from "../components/ProductForm";
+import ProductCreateForm from "../components/CreateForms/ProductCreateForm";
 
 class ProductDetail extends React.Component {
   state = {
@@ -25,7 +25,7 @@ class ProductDetail extends React.Component {
           <h3>Is it Special: {this.state.product.is_special}</h3>
           <h3>Is it Active?: {this.state.product.is_active}</h3>
         </Card>
-        <ProductForm
+        <ProductCreateForm
           requestType="put"
           btnText="Modify"
           productID={this.state.product.id}

@@ -8,7 +8,7 @@ function onChange(value) {
   console.log("changed", value);
 }
 
-class ProductForm extends React.Component {
+class ProductCreateForm extends React.Component {
   formRef = React.createRef();
 
   onFinish = values => {
@@ -177,4 +177,4 @@ class ProductForm extends React.Component {
   }
 }
 
-export default ProductForm;
+export default ProductCreateForm;

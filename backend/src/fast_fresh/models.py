@@ -7,6 +7,7 @@ class Product (models.Model):
     is_active = models.BooleanField()
     provider = models.ForeignKey(
         'Provider', on_delete=models.CASCADE, null=False, blank=False)
+    is_active = models.BooleanField()
 
     def __str__(self):
         return self.product_name
@@ -25,9 +26,7 @@ class Batch (models.Model):
     price_points = models.IntegerField(default=0)
     store = models.ForeignKey(
         'Store', on_delete=models.CASCADE, null=False, blank=False)
-
-    def __str__(self):
-        return self.product_name
+    is_active = models.BooleanField()
 
 
 class Type_Of_Product (models.Model):
@@ -43,6 +42,7 @@ class Product_Type (models.Model):
         'Product', on_delete=models.CASCADE, null=False, blank=False)
     type_of_product = models.ForeignKey(
         'Type_Of_Product', on_delete=models.CASCADE, null=False, blank=False)
+    is_active = models.BooleanField()
 
 
 class Client (models.Model):
@@ -50,11 +50,12 @@ class Client (models.Model):
     client_name = models.CharField(max_length=100)
     client_last_name = models.CharField(max_length=100)
     client_cedula = models.IntegerField(null=True, unique=True)
-    client_phone = models.IntegerField(null=True)
+    client_phone = models.CharField(max_length=11)
     client_gender = models.CharField(
         max_length=1, choices=GENDER, blank=False, null=False)
     zona = models.ForeignKey(
         'Zona', on_delete=models.CASCADE, null=False, blank=False)
+    is_active = models.BooleanField()
 
     def __str__(self):
         return self.client_name
@@ -134,6 +135,7 @@ class Delivery (models.Model):
     zona = models.ForeignKey(
         'Zona', on_delete=models.CASCADE, null=False, blank=False)
     address = models.CharField(max_length=200)
+    is_active = models.BooleanField()
 
 
 class PickUp (models.Model):
@@ -142,6 +144,7 @@ class PickUp (models.Model):
         max_length=15, choices=STATUS, blank=False, null=False)
     bill_id = models.ForeignKey(
         'Bill', on_delete=models.CASCADE, null=False, blank=False)
+    is_active = models.BooleanField()
 
 
 class Bill (models.Model):
@@ -155,6 +158,7 @@ class Bill (models.Model):
     bill_earned_points = models.IntegerField()
     bill_delivery = models.BooleanField()
     bill_pickup = models.BooleanField()
+    is_active = models.BooleanField()
 
 
 class BillDetails (models.Model):
@@ -163,6 +167,7 @@ class BillDetails (models.Model):
     product_batch_id = models.ForeignKey(
         'Batch', on_delete=models.CASCADE, null=False, blank=False)
     product_quantity = models.IntegerField()
+    is_active = models.BooleanField()
 
 
 class CashRegister (models.Model):
@@ -176,6 +181,7 @@ class CashRegisterBills(models.Model):
         'CashRegister', on_delete=models.CASCADE, null=False, blank=False)
     bill = models.ForeignKey(
         'Bill', on_delete=models.CASCADE, null=False, blank=False)
+    is_active = models.BooleanField()
 
 
 class Payment(models.Model):
@@ -185,6 +191,7 @@ class Payment(models.Model):
     payment_method_instrument = models.IntegerField(null=True)
     bill = models.ForeignKey(
         'Bill', on_delete=models.CASCADE, null=False, blank=False)
+    is_active = models.BooleanField()
 
 
 class PaymentMethod (models.Model):
@@ -219,9 +226,9 @@ class Employee (models.Model):
     employee_phone = models.IntegerField()
     employee_job = models.ForeignKey(
         'Job', on_delete=models.CASCADE, null=False, blank=False)
-    is_active = models.BooleanField()
     salary_bonus = models.IntegerField()
     employee_email = models.EmailField()
+    is_active = models.BooleanField()
 
     def __str__(self):
         return (self.employee_name + self.employee_last_name)
@@ -233,6 +240,7 @@ class EmployeeStore(models.Model):
     employee = models.ForeignKey(
         'Employee', on_delete=models.CASCADE, null=False, blank=False)
     hired_date = models.DateField(editable=False)
+    is_active = models.BooleanField()
 
 
 class Job(models.Model):
@@ -247,6 +255,7 @@ class Job(models.Model):
 class IVA(models.Model):
     iva_porcentaje = models.FloatField()
     iva_date = models.DateField(auto_now_add=True)
+    is_active = models.BooleanField()
 
 
 class Provider(models.Model):
@@ -263,3 +272,4 @@ class ProviderPhone(models.Model):
     provider = models.ForeignKey(
         'Provider', on_delete=models.CASCADE, null=False, blank=False)
     provider_phone_number = models.IntegerField()
+    is_active = models.BooleanField()
