@@ -10,4 +10,5 @@ urlpatterns = [
     path('QUERIES_1/', query_set_1 ),
     path('QUERIES_2/', query_set_2 ),
     path('QUERIES_3/', query_set_3 ),
+    path('QUERIES_3/<MesI>/<MesF>', query_set_3 ),
 ]
