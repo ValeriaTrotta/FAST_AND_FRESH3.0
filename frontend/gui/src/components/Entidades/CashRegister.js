@@ -18,6 +18,11 @@ const columns = [
     key: "is_active" + "id"
   },
   {
+    title: "Activo",
+    dataIndex: "is_active",
+    key: "is_active" + "id"
+  },
+  {
     title: "View",
     key: "operation",
     fixed: "right",
@@ -29,4 +34,4 @@ const CashRegisters = props => {
   return <Table dataSource={props.data} columns={columns} />;
 };
 
-export default CashRegister;
+export default CashRegisters;

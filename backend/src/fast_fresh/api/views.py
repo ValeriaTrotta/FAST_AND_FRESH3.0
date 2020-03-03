@@ -56,7 +56,7 @@ class ZonaViewSet(viewsets.ModelViewSet):
     permission_classes = [
         permissions.AllowAny
     ]
-    serializer_class = Zona
+    serializer_class = ZonaSerializer
 
 
 class CityViewSet(viewsets.ModelViewSet):

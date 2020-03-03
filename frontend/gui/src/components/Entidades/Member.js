@@ -33,7 +33,7 @@ const columns = [
     key: "member_pay_date" + "id"
   },
   {
-    title: "Miembro Activo",
+    title: "Activo",
     dataIndex: "is_active",
     key: "is_active" + "id"
   },

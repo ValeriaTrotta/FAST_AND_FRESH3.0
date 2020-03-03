@@ -18,7 +18,7 @@ const columns = [
     key: "city" + "id"
   },
   {
-    title: "Zona Activa",
+    title: "Activo",
     dataIndex: "is_active",
     key: "is_active" + "id"
   },

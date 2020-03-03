@@ -9,7 +9,7 @@ class ProductAdmin(admin.ModelAdmin):
 
 class BatchAdmin(admin.ModelAdmin):
     list_display = ('id', 'product_name', 'units', 'elaboration_date',
-                    'expiration_date', 'price_dolars_u', 'units_sold', 'units_lost', 'discount', 'price_points', 'store')
+                    'expiration_date', 'price_dolars_u', 'units_sold', 'units_lost', 'discount', 'price_points', 'store', 'is_active')
 
 
 class Type_of_Product_Admin(admin.ModelAdmin):
@@ -17,12 +17,12 @@ class Type_of_Product_Admin(admin.ModelAdmin):
 
 
 class Product_Type_Admin(admin.ModelAdmin):
-    list_display = ('product_name', 'type_of_product')
+    list_display = ('product_name', 'type_of_product', 'is_active')
 
 
 class ClientAdmin(admin.ModelAdmin):
     list_display = ('id', 'client_name', 'client_last_name',
-                    'client_cedula', 'client_phone', 'client_gender', 'zona')
+                    'client_cedula', 'client_phone', 'client_gender', 'zona', 'is_active')
 
 
 class MemberAdmin(admin.ModelAdmin):
@@ -53,7 +53,7 @@ class StoreBossAdmin (admin.ModelAdmin):
 
 class DeliveryAdmin(admin.ModelAdmin):
     list_display = ('id', 'delivery_price',
-                    'employee', 'bill_id', 'delivery_status', 'zona', 'address')
+                    'employee', 'bill_id', 'delivery_status', 'zona', 'address', 'is_active')
 
 
 class PickUpAdmin(admin.ModelAdmin):
@@ -62,11 +62,12 @@ class PickUpAdmin(admin.ModelAdmin):
 
 class BillAdmin(admin.ModelAdmin):
     list_display = ('id', 'client_id', 'bill_sub_total',
-                    'bill_iva', 'bill_date', 'bill_time', 'bill_earned_points', 'bill_delivery', 'bill_pickup')
+                    'bill_iva', 'bill_date', 'bill_time', 'bill_earned_points', 'bill_delivery', 'bill_pickup', 'is_active')
 
 
 class BillDetailsAdmin(admin.ModelAdmin):
-    list_display = ('id', 'bill_id', 'product_batch_id', 'product_quantity')
+    list_display = ('id', 'bill_id', 'product_batch_id',
+                    'product_quantity', 'is_active')
 
 
 class CashRegisterAdmin(admin.ModelAdmin):
@@ -74,12 +75,12 @@ class CashRegisterAdmin(admin.ModelAdmin):
 
 
 class CashRegisterBillsAdmin(admin.ModelAdmin):
-    list_display = ('id', 'cash_register', 'bill')
+    list_display = ('id', 'cash_register', 'bill', 'is_active')
 
 
 class PaymentAdmin(admin.ModelAdmin):
     list_display = ('id', 'payment_amount', 'payment_method',
-                    'payment_method_instrument', 'bill')
+                    'payment_method_instrument', 'bill', 'is_active')
 
 
 class PaymentMethodAdmin(admin.ModelAdmin):
@@ -91,25 +92,25 @@ class CurrencyAdmin(admin.ModelAdmin):
 
 
 class ExchangeRateAdmin (admin.ModelAdmin):
-    list_display = ('id', 'exchange_rate', 'exchange_rate_date')
+    list_display = ('id', 'exchange_rate', 'exchange_rate_date', 'is_active')
 
 
 class EmployeeAdmin(admin.ModelAdmin):
     list_display = ('id', 'employee_name', 'employee_last_name', 'employee_cedula', 'employee_gender',
-                    'employee_birth_date', 'employee_phone',  'employee_job', 'salary_bonus', 'employee_email')
+                    'employee_birth_date', 'employee_phone',  'employee_job', 'salary_bonus', 'employee_email', 'is_active')
 
 
 class EmployeeStoreAdmin(admin.ModelAdmin):
     list_display = ('id', 'employee_store', 'employee',
-                    'hired_date')
+                    'hired_date', 'is_active')
 
 
 class JobAdmin(admin.ModelAdmin):
-    list_display = ('id', 'job_name', 'job_salary')
+    list_display = ('id', 'job_name', 'job_salary', 'is_active')
 
 
 class IVAAdmin(admin.ModelAdmin):
-    list_display = ('id', 'iva_porcentaje', 'iva_date')
+    list_display = ('id', 'iva_porcentaje', 'iva_date', 'is_active')
 
 
 class ProviderAdmin(admin.ModelAdmin):
@@ -118,7 +119,7 @@ class ProviderAdmin(admin.ModelAdmin):
 
 
 class ProviderPhoneAdmin(admin.ModelAdmin):
-    list_display = ('id', 'provider', 'provider_phone_number')
+    list_display = ('id', 'provider', 'provider_phone_number', 'is_active')
 
 
 admin.site.register(Product, ProductAdmin)

@@ -14,7 +14,7 @@ const columns = [
   },
 
   {
-    title: "Payment Method Activo",
+    title: "Activo",
     dataIndex: "is_active",
     key: "is_active" + "id"
   },

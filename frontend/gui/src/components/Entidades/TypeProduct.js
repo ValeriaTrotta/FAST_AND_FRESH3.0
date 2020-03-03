@@ -13,8 +13,8 @@ const columns = [
     key: "type" + "id"
   },
   {
-    title: "Producto Activo",
-    tags: ["is_active"],
+    title: "Activo",
+    dataIndex: "is_active",
     key: "is_active" + "id"
   },
   {

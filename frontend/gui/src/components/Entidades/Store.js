@@ -33,7 +33,7 @@ const columns = [
     key: "store_phone" + "id"
   },
   {
-    title: "Store Activa",
+    title: "Activo",
     dataIndex: "is_active",
     key: "is_active" + "id"
   },

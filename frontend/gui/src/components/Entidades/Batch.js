@@ -58,6 +58,11 @@ const columns = [
     key: "store" + "id"
   },
   {
+    title: "Activo",
+    dataIndex: "is_active",
+    key: "is_active" + "id"
+  },
+  {
     title: "View",
     key: "View",
     fixed: "right",

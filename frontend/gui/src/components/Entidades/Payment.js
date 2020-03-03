@@ -28,6 +28,11 @@ const columns = [
     key: "bill" + "id"
   },
   {
+    title: "Activo",
+    dataIndex: "is_active",
+    key: "is_active" + "id"
+  },
+  {
     title: "View",
     key: "operation",
     fixed: "right",

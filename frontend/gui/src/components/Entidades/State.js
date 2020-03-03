@@ -8,10 +8,11 @@ const columns = [
     key: "id"
   },
   {
-    title: "State Activa",
+    title: "Activo",
     dataIndex: "is_active",
     key: "is_active" + "id"
   },
+
   {
     title: "View",
     key: "operation",
