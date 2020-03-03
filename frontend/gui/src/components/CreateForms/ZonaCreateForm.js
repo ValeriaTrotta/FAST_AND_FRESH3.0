@@ -8,7 +8,7 @@ function onChange(value) {
   console.log("changed", value);
 }
 
-class ProductCreateForm extends React.Component {
+class ZonaCreateForm extends React.Component {
   formRef = React.createRef();
 
   onFinish = values => {
@@ -20,42 +20,29 @@ class ProductCreateForm extends React.Component {
   };
 
   state = {
-    providers: [],
+    cities: [],
     currProd: {}
   };
 
   componentDidMount() {
-    if (this.props.productID !== null) {
-      axios
-        .get(`http://127.0.0.1:8000/api/product/${this.props.productID}/`)
-        .then(res => {
-          this.setState({
-            currProd: res.data
-          });
-          console.log("current", this.props.producID);
-        });
-    }
-    axios.get("http://127.0.0.1:8000/api/provider/").then(res => {
+    axios.get("http://127.0.0.1:8000/api/city/").then(res => {
       this.setState({
-        providers: res.data
+        cities: res.data
       });
-      console.log(this.state.providers);
     });
   }
 
   handleFormSubmit = event => {
     // event.preventDefault();
-    const product_name = event.Nombre;
-    const provider = event.Proveedor;
+    const zona_name = event.Nombre;
+    const city = event.Ciudad;
     const is_active = event.Active;
-    const is_special = event.Special;
 
     return axios
-      .post("http://127.0.0.1:8000/api/product/", {
-        provider: provider,
-        product_name: product_name,
-        is_active: is_active,
-        is_special: is_special
+      .post("http://127.0.0.1:8000/api/zona/", {
+        zona_name: zona_name,
+        city: city,
+        is_active: is_active
       })
       .then(res => console.log(res))
       .catch(error => console.err(error));
@@ -82,47 +69,28 @@ class ProductCreateForm extends React.Component {
             }
           ]}
           label="Nombre"
-          key={this.state.currProd.product_name}
         >
-          <Input name="name" placeholder="Nombre del producto" />
+          <Input name="name" placeholder="Nombre de la Zona" />
         </Form.Item>
 
         <Form.Item
-          name="Proveedor"
-          label="Proveedor"
+          name="Ciudad"
+          label="Ciudad"
           rules={[
             {
               required: true
             }
           ]}
-          key={this.state.currProd.provider}
         >
-          <Select
-            name="provider"
-            placeholder="Selecciona un proveedor"
-            allowClear
-          >
-            {this.state.providers.map(provs => (
-              <Option value={provs.id} key={provs.provider_name}>
-                {provs.provider_name}
+          <Select name="city" placeholder="Selecciona una Ciudad" allowClear>
+            {this.state.cities.map(provs => (
+              <Option value={provs.id} key={provs.city_name}>
+                {provs.city_name}
               </Option>
             ))}
           </Select>
         </Form.Item>
-        <Form.Item
-          name="Special"
-          label="Special"
-          rules={[
-            {
-              required: true
-            }
-          ]}
-        >
-          <Select name="special" placeholder="Is it Special?" allowClear>
-            <Option value={true}>Yes</Option>
-            <Option value={false}>No</Option>
-          </Select>
-        </Form.Item>
+
         <Form.Item
           name="Active"
           label="Active"
@@ -141,7 +109,7 @@ class ProductCreateForm extends React.Component {
         <br />
         <Form.Item>
           <Button type="primary" htmlType="submit">
-            {this.props.btnText}
+            Crear
           </Button>
         </Form.Item>
       </Form>
@@ -149,4 +117,4 @@ class ProductCreateForm extends React.Component {
   }
 }
 
-export default ProductCreateForm;
+export default ZonaCreateForm;

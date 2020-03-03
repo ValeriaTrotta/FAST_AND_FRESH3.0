@@ -10,6 +10,7 @@ import {
   TimePicker
 } from "antd";
 import axios from "axios";
+import ProductCreateForm from "./ProductCreateForm";
 
 const { Option } = Select;
 
@@ -72,7 +73,7 @@ class BatchCreateForm extends React.Component {
     });
   }
 
-  handleFormSubmit = (event, requestType, batchID) => {
+  handleFormSubmit = event => {
     // event.preventDefault();
     var moment = require("moment");
     const product_name = event.Nombre;
@@ -88,42 +89,21 @@ class BatchCreateForm extends React.Component {
 
     console.log(price_points);
 
-    switch (requestType) {
-      case "post":
-        console.log("entre");
-        return axios
-          .post("http://127.0.0.1:8000/api/batch/", {
-            product_name: product_name,
-            units: units,
-            elaboration_date: elaboration_date,
-            expiration_date: expiration_date,
-            price_dolars_u: price_dolars_u,
-            units_sold: units_sold,
-            units_lost: units_lost,
-            discount: discount,
-            price_points: price_points,
-            store: store
-          })
-          .then(res => console.log(res))
-          .catch(error => console.error(error));
-
-      case "put":
-        return axios
-          .put(`http://127.0.0.1:8000/api/batch/${batchID}/`, {
-            product_name: product_name,
-            units: units,
-            elaboration_date: elaboration_date,
-            expiration_date: expiration_date,
-            price_dolars_u: price_dolars_u,
-            units_sold: units_sold,
-            units_lost: units_lost,
-            discount: discount,
-            price_points: price_points,
-            store: store
-          })
-          .then(res => console.log(res))
-          .catch(error => console.err(error));
-    }
+    return axios
+      .post("http://127.0.0.1:8000/api/batch/", {
+        product_name: product_name,
+        units: units,
+        elaboration_date: elaboration_date,
+        expiration_date: expiration_date,
+        price_dolars_u: price_dolars_u,
+        units_sold: units_sold,
+        units_lost: units_lost,
+        discount: discount,
+        price_points: price_points,
+        store: store
+      })
+      .then(res => console.log(res))
+      .catch(error => console.error(error));
   };
 
   render() {
@@ -211,7 +191,7 @@ class BatchCreateForm extends React.Component {
         <Form.Item
           name="Descuento"
           label="Discount"
-          rules={[{ required: true, type: "number", min: 0.01, max: 1 }]}
+          rules={[{ required: true, type: "number", min: 0.0, max: 1 }]}
         >
           <InputNumber />
         </Form.Item>
@@ -242,7 +222,7 @@ class BatchCreateForm extends React.Component {
         <br />
         <Form.Item>
           <Button type="primary" htmlType="submit">
-            {this.props.btnText}
+            Create
           </Button>
         </Form.Item>
       </Form>

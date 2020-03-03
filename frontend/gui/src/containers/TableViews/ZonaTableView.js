@@ -1,6 +1,6 @@
 import React from "react";
 import Zonas from "../../components/Entidades/Zona";
-import ProductCreateForm from "../../components/CreateForms/ProductCreateForm";
+import ZonaCreateForm from "../../components/CreateForms/ZonaCreateForm";
 import axios from "axios";
 
 class ZonaTable extends React.Component {
@@ -44,8 +44,8 @@ class ZonaTable extends React.Component {
     return (
       <div>
         <Zonas data={lista} />
-        <h2>Create Product</h2>
-        <ProductCreateForm requestType="post" btnText="Add" productID={null} />
+        <h2>Create Zona</h2>
+        <ZonaCreateForm />
       </div>
     );
   }

@@ -1,6 +1,6 @@
 import React from "react";
 import CashRegisters from "../../components/Entidades/CashRegister";
-import ProductCreateForm from "../../components/CreateForms/ProductCreateForm";
+import CashRegisterCreateForm from "../../components/CreateForms/CashRegisterCreateForm";
 import axios from "axios";
 
 class CashRegisterTable extends React.Component {
@@ -41,8 +41,8 @@ class CashRegisterTable extends React.Component {
     return (
       <div>
         <CashRegisters data={lista} />
-        <h2>Create Product</h2>
-        <ProductCreateForm requestType="post" btnText="Add" productID={null} />
+        <h2>Create Cash Register</h2>
+        <CashRegisterCreateForm />
       </div>
     );
   }

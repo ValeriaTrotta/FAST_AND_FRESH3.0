@@ -1,6 +1,6 @@
 import React from "react";
 import Payments from "../../components/Entidades/Payment";
-import ProductCreateForm from "../../components/CreateForms/ProductCreateForm";
+import PaymentCreateForm from "../../components/CreateForms/PaymentCreateForm";
 import axios from "axios";
 
 class PaymentTable extends React.Component {
@@ -47,8 +47,8 @@ class PaymentTable extends React.Component {
     return (
       <div>
         <Payments data={lista} />
-        <h2>Create Product</h2>
-        <ProductCreateForm requestType="post" btnText="Add" productID={null} />
+        <h2>Create Payment</h2>
+        <PaymentCreateForm />
       </div>
     );
   }

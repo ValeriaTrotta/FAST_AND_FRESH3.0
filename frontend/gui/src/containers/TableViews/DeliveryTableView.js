@@ -1,6 +1,6 @@
 import React from "react";
 import Deliveries from "../../components/Entidades/Delivery";
-import ProductCreateForm from "../../components/CreateForms/ProductCreateForm";
+import DeliveryCreateForm from "../../components/CreateForms/DeliveryCreateForm";
 import axios from "axios";
 
 class DeliveryTable extends React.Component {
@@ -51,8 +51,8 @@ class DeliveryTable extends React.Component {
     return (
       <div>
         <Deliveries data={lista} />
-        <h2>Create Product</h2>
-        <ProductCreateForm requestType="post" btnText="Add" productID={null} />
+        <h2>Create Delivery</h2>
+        <DeliveryCreateForm />
       </div>
     );
   }

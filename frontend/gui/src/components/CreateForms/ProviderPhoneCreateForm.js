@@ -1,14 +1,27 @@
 import React from "react";
-import { Form, Input, Button, Select, InputNumber, Radio } from "antd";
+import {
+  Form,
+  Input,
+  Button,
+  Select,
+  InputNumber,
+  Radio,
+  DatePicker,
+  TimePicker
+} from "antd";
 import axios from "axios";
+import moment from "moment";
 
 const { Option } = Select;
 
 function onChange(value) {
   console.log("changed", value);
 }
+const config = {
+  rules: [{ type: "object", required: true, message: "Please select time!" }]
+};
 
-class ProductCreateForm extends React.Component {
+class ProviderPhoneCreateForm extends React.Component {
   formRef = React.createRef();
 
   onFinish = values => {
@@ -20,42 +33,29 @@ class ProductCreateForm extends React.Component {
   };
 
   state = {
-    providers: [],
-    currProd: {}
+    providers: []
   };
 
   componentDidMount() {
-    if (this.props.productID !== null) {
-      axios
-        .get(`http://127.0.0.1:8000/api/product/${this.props.productID}/`)
-        .then(res => {
-          this.setState({
-            currProd: res.data
-          });
-          console.log("current", this.props.producID);
-        });
-    }
     axios.get("http://127.0.0.1:8000/api/provider/").then(res => {
       this.setState({
         providers: res.data
       });
-      console.log(this.state.providers);
     });
   }
 
   handleFormSubmit = event => {
     // event.preventDefault();
-    const product_name = event.Nombre;
+
     const provider = event.Proveedor;
+    const provider_phone_number = event.Telefono;
     const is_active = event.Active;
-    const is_special = event.Special;
 
     return axios
-      .post("http://127.0.0.1:8000/api/product/", {
+      .post("http://127.0.0.1:8000/api/providerphone/", {
         provider: provider,
-        product_name: product_name,
         is_active: is_active,
-        is_special: is_special
+        provider_phone_number: provider_phone_number
       })
       .then(res => console.log(res))
       .catch(error => console.err(error));
@@ -75,19 +75,6 @@ class ProductCreateForm extends React.Component {
         }
       >
         <Form.Item
-          name="Nombre"
-          rules={[
-            {
-              required: true
-            }
-          ]}
-          label="Nombre"
-          key={this.state.currProd.product_name}
-        >
-          <Input name="name" placeholder="Nombre del producto" />
-        </Form.Item>
-
-        <Form.Item
           name="Proveedor"
           label="Proveedor"
           rules={[
@@ -95,7 +82,6 @@ class ProductCreateForm extends React.Component {
               required: true
             }
           ]}
-          key={this.state.currProd.provider}
         >
           <Select
             name="provider"
@@ -110,19 +96,17 @@ class ProductCreateForm extends React.Component {
           </Select>
         </Form.Item>
         <Form.Item
-          name="Special"
-          label="Special"
+          name="Telefono"
           rules={[
             {
               required: true
             }
           ]}
+          label="Telefono"
         >
-          <Select name="special" placeholder="Is it Special?" allowClear>
-            <Option value={true}>Yes</Option>
-            <Option value={false}>No</Option>
-          </Select>
+          <Input name="telefono" placeholder="Telefono del Proveedor" />
         </Form.Item>
+
         <Form.Item
           name="Active"
           label="Active"
@@ -141,7 +125,7 @@ class ProductCreateForm extends React.Component {
         <br />
         <Form.Item>
           <Button type="primary" htmlType="submit">
-            {this.props.btnText}
+            Crear
           </Button>
         </Form.Item>
       </Form>
@@ -149,4 +133,4 @@ class ProductCreateForm extends React.Component {
   }
 }
 
-export default ProductCreateForm;
+export default ProviderPhoneCreateForm;

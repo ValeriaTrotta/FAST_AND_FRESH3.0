@@ -1,6 +1,6 @@
 import React from "react";
 import Clients from "../../components/Entidades/Client";
-import ProductCreateForm from "../../components/CreateForms/ProductCreateForm";
+import ClientCreateForm from "../../components/CreateForms/ClientCreateForm";
 import axios from "axios";
 
 class ClientTable extends React.Component {
@@ -52,8 +52,8 @@ class ClientTable extends React.Component {
     return (
       <div>
         <Clients data={lista} />
-        <h2>Create Product</h2>
-        {/* <ProductCreateForm requestType="post" btnText="Add" productID={null} /> */}
+        <h2>Agregar Cliente</h2>
+        <ClientCreateForm />
       </div>
     );
   }

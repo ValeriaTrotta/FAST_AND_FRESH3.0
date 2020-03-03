@@ -1,6 +1,6 @@
 import React from "react";
 import Currencies from "../../components/Entidades/Currency";
-import ProductCreateForm from "../../components/CreateForms/ProductCreateForm";
+import CurrencyCreateForm from "../../components/CreateForms/CurrencyCreateForm";
 import axios from "axios";
 
 class CurrencyTable extends React.Component {
@@ -42,7 +42,7 @@ class CurrencyTable extends React.Component {
       <div>
         <Currencies data={lista} />
         <h2>Create Product</h2>
-        <ProductCreateForm requestType="post" btnText="Add" productID={null} />
+        <CurrencyCreateForm />
       </div>
     );
   }

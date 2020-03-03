@@ -70,7 +70,7 @@ class ProductTable extends React.Component {
       <div>
         <Products data={lista} />
         <h2>Create Product</h2>
-        <ProductCreateForm requestType="post" btnText="Add" productID={null} />
+        <ProductCreateForm />
       </div>
     );
   }

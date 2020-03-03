@@ -57,7 +57,7 @@ class BatchTable extends React.Component {
       <div>
         <Batches data={lista} />
         <h2>Create Batch</h2>
-        <BatchCreateForm requestType="post" btnText="Add" batchID={null} />
+        <BatchCreateForm />
       </div>
     );
   }

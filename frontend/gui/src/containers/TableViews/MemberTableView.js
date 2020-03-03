@@ -1,6 +1,6 @@
 import React from "react";
 import Members from "../../components/Entidades/Member";
-import ProductCreateForm from "../../components/CreateForms/ProductCreateForm";
+import MemberCreateForm from "../../components/CreateForms/MemberCreateForm";
 import axios from "axios";
 
 class MemberTable extends React.Component {
@@ -51,8 +51,8 @@ class MemberTable extends React.Component {
     return (
       <div>
         <Members data={lista} />
-        <h2>Create Product</h2>
-        <ProductCreateForm requestType="post" btnText="Add" productID={null} />
+        <h2>Create Member</h2>
+        <MemberCreateForm />
       </div>
     );
   }

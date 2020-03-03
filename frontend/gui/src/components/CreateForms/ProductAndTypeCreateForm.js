@@ -8,7 +8,7 @@ function onChange(value) {
   console.log("changed", value);
 }
 
-class ProductCreateForm extends React.Component {
+class ProductAndTypeCreateForm extends React.Component {
   formRef = React.createRef();
 
   onFinish = values => {
@@ -20,42 +20,34 @@ class ProductCreateForm extends React.Component {
   };
 
   state = {
-    providers: [],
-    currProd: {}
+    products: [],
+    typeproducts: []
   };
 
   componentDidMount() {
-    if (this.props.productID !== null) {
-      axios
-        .get(`http://127.0.0.1:8000/api/product/${this.props.productID}/`)
-        .then(res => {
-          this.setState({
-            currProd: res.data
-          });
-          console.log("current", this.props.producID);
-        });
-    }
-    axios.get("http://127.0.0.1:8000/api/provider/").then(res => {
+    axios.get("http://127.0.0.1:8000/api/product/").then(res => {
       this.setState({
-        providers: res.data
+        products: res.data
       });
-      console.log(this.state.providers);
+    });
+    axios.get("http://127.0.0.1:8000/api/type_of_product/").then(res => {
+      this.setState({
+        typeproducts: res.data
+      });
     });
   }
 
   handleFormSubmit = event => {
     // event.preventDefault();
     const product_name = event.Nombre;
-    const provider = event.Proveedor;
+    const type_of_product = event.Tipo;
     const is_active = event.Active;
-    const is_special = event.Special;
 
     return axios
-      .post("http://127.0.0.1:8000/api/product/", {
-        provider: provider,
+      .post("http://127.0.0.1:8000/api/product_type/", {
         product_name: product_name,
-        is_active: is_active,
-        is_special: is_special
+        type_of_product: type_of_product,
+        is_active: is_active
       })
       .then(res => console.log(res))
       .catch(error => console.err(error));
@@ -76,53 +68,40 @@ class ProductCreateForm extends React.Component {
       >
         <Form.Item
           name="Nombre"
-          rules={[
-            {
-              required: true
-            }
-          ]}
           label="Nombre"
-          key={this.state.currProd.product_name}
-        >
-          <Input name="name" placeholder="Nombre del producto" />
-        </Form.Item>
-
-        <Form.Item
-          name="Proveedor"
-          label="Proveedor"
           rules={[
             {
               required: true
             }
           ]}
-          key={this.state.currProd.provider}
         >
-          <Select
-            name="provider"
-            placeholder="Selecciona un proveedor"
-            allowClear
-          >
-            {this.state.providers.map(provs => (
-              <Option value={provs.id} key={provs.provider_name}>
-                {provs.provider_name}
+          <Select name="product" placeholder="Selecciona un Producto">
+            {this.state.products.map(provs => (
+              <Option value={provs.id} key={provs.product_name}>
+                {provs.product_name}
               </Option>
             ))}
           </Select>
         </Form.Item>
+
         <Form.Item
-          name="Special"
-          label="Special"
+          name="Tipo"
+          label="Tipo"
           rules={[
             {
               required: true
             }
           ]}
         >
-          <Select name="special" placeholder="Is it Special?" allowClear>
-            <Option value={true}>Yes</Option>
-            <Option value={false}>No</Option>
+          <Select name="type" placeholder="Selecciona una Categoria">
+            {this.state.typeproducts.map(provs => (
+              <Option value={provs.id} key={provs.type}>
+                {provs.type}
+              </Option>
+            ))}
           </Select>
         </Form.Item>
+
         <Form.Item
           name="Active"
           label="Active"
@@ -149,4 +128,4 @@ class ProductCreateForm extends React.Component {
   }
 }
 
-export default ProductCreateForm;
+export default ProductAndTypeCreateForm;

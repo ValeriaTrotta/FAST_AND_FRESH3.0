@@ -245,7 +245,7 @@ class EmployeeStore(models.Model):
 
 class Job(models.Model):
     job_name = models.CharField(max_length=30)
-    job_salary = models.FloatField
+    job_salary = models.FloatField()
     is_active = models.BooleanField()
 
     def __str__(self):
