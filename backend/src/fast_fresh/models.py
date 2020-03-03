@@ -68,7 +68,7 @@ class Member (models.Model):
     member_pay_date = models.DateField()
     client = models.OneToOneField(
         'Client', on_delete=models.CASCADE, null=False, blank=False)
-    is_active = models.BooleanField()
+    is_active = models.BooleanField(default=True)
     member_birth_date = models.DateField()
 
 
