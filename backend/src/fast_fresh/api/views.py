@@ -551,3 +551,35 @@ def productos_especiales(request):
     }
 
     return JsonResponse(data)
+
+
+# Productos y cantidad de vendidos de un día
+def ventas_diarias(request):
+
+    # Un JSON se establece con {}
+
+    arreglo = []
+    cantidad = []
+
+    query = BillDetails.objects.values(
+        'product_batch_id__product_name__product_name').annotate(
+        a=Sum('product_quantity')).filter(
+            bill_id__bill_date__year='2020',
+            bill_id__bill_date__month='03',
+            bill_id__bill_date__day='04').order_by('-a')
+
+    for x in query:
+        arreglo.append(x['product_batch_id__product_name__product_name'])
+        cantidad.append(x['a'])
+
+    b = []
+
+    for x in range(len(arreglo)):
+        c = {'Producto': arreglo[x], 'Cantidad': cantidad[x]}
+        b.append(c)
+
+    data = {
+        'algo': b,
+    }
+
+    return JsonResponse(data)
