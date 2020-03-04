@@ -1,6 +1,6 @@
 import React from "react";
 import IVAs from "../../components/Entidades/IVA";
-import ProductCreateForm from "../../components/CreateForms/ProductCreateForm";
+import IVACreateForm from "../../components/CreateForms/IVACreateForm";
 import axios from "axios";
 
 class IVATable extends React.Component {
@@ -43,8 +43,8 @@ class IVATable extends React.Component {
     return (
       <div>
         <IVAs data={lista} />
-        <h2>Create Product</h2>
-        <ProductCreateForm requestType="post" btnText="Add" productID={null} />
+        <h2>Create IVA</h2>
+        <IVACreateForm />
       </div>
     );
   }

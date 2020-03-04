@@ -1,6 +1,6 @@
 import React from "react";
 import Cities from "../../components/Entidades/City";
-import ProductCreateForm from "../../components/CreateForms/ProductCreateForm";
+import CityCreateForm from "../../components/CreateForms/CityCreateForm";
 import axios from "axios";
 
 class CityTable extends React.Component {
@@ -43,8 +43,8 @@ class CityTable extends React.Component {
     return (
       <div>
         <Cities data={lista} />
-        <h2>Create Product</h2>
-        <ProductCreateForm requestType="post" btnText="Add" productID={null} />
+        <h2>Create City</h2>
+        <CityCreateForm />
       </div>
     );
   }

@@ -1,6 +1,6 @@
 import React from "react";
 import TypeProducts from "../../components/Entidades/TypeProduct";
-// import ProductCreateForm from "../components/CreateForms/TypeProductCreateForm";
+import TypeProductCreateForm from "../../components/CreateForms/TypeProductCreateForm";
 import axios from "axios";
 
 class TypeProductTable extends React.Component {
@@ -28,22 +28,22 @@ class TypeProductTable extends React.Component {
         };
         lista.push(item);
       }
-      if (!typeproduct.is_active) {
-        const item = {
-          id: typeproduct.id,
-          type: typeproduct.type,
-          is_active: "Inactivo"
-        };
-        lista.push(item);
-      }
+      // if (!typeproduct.is_active) {
+      //   const item = {
+      //     id: typeproduct.id,
+      //     type: typeproduct.type,
+      //     is_active: "Inactivo"
+      //   };
+      //   lista.push(item);
+      // }
     });
 
     console.log(lista);
     return (
       <div>
         <TypeProducts data={lista} />
-        <h2>Create Product</h2>
-        {/* <TypeProductCreateForm requestType="post" btnText="Add" typeproductID={null} /> */}
+        <h2>Create Type of Product</h2>
+        <TypeProductCreateForm />
       </div>
     );
   }

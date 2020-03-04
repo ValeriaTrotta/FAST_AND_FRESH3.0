@@ -1,6 +1,6 @@
 import React from "react";
 import EmployeeStores from "../../components/Entidades/EmployeeStore";
-import ProductCreateForm from "../../components/CreateForms/ProductCreateForm";
+import EmployeeStoreCreateForm from "../../components/CreateForms/EmployeeStoreCreateForm";
 import axios from "axios";
 
 class EmployeeStoreTable extends React.Component {
@@ -45,8 +45,8 @@ class EmployeeStoreTable extends React.Component {
     return (
       <div>
         <EmployeeStores data={lista} />
-        <h2>Create Product</h2>
-        <ProductCreateForm requestType="post" btnText="Add" productID={null} />
+        <h2>Add Employee to Store</h2>
+        <EmployeeStoreCreateForm />
       </div>
     );
   }

@@ -7,6 +7,9 @@ const { Option } = Select;
 function onChange(value) {
   console.log("changed", value);
 }
+function onSearch(val) {
+  console.log("search:", val);
+}
 
 class ProductCreateForm extends React.Component {
   formRef = React.createRef();
@@ -43,37 +46,22 @@ class ProductCreateForm extends React.Component {
     });
   }
 
-  handleFormSubmit = (event, requestType, productID) => {
+  handleFormSubmit = (event, productId) => {
     // event.preventDefault();
     const product_name = event.Nombre;
     const provider = event.Proveedor;
     const is_active = event.Active;
     const is_special = event.Special;
 
-    switch (requestType) {
-      case "post":
-        console.log("entre");
-        return axios
-          .post("http://127.0.0.1:8000/api/product/", {
-            provider: provider,
-            product_name: product_name,
-            is_active: is_active,
-            is_special: is_special
-          })
-          .then(res => console.log(res))
-          .catch(error => console.err(error));
-
-      case "put":
-        return axios
-          .put(`http://127.0.0.1:8000/api/product/${productID}/`, {
-            provider: provider,
-            product_name: product_name,
-            is_active: is_active,
-            is_special: is_special
-          })
-          .then(res => console.log(res))
-          .catch(error => console.err(error));
-    }
+    return axios
+      .post("http://127.0.0.1:8000/api/product/", {
+        provider: provider,
+        product_name: product_name,
+        is_active: is_active,
+        is_special: is_special
+      })
+      .then(res => console.log(res))
+      .catch(error => console.err(error));
   };
 
   render() {
@@ -81,13 +69,7 @@ class ProductCreateForm extends React.Component {
       <Form
         ref={this.formRef}
         name="control-ref"
-        onFinish={event =>
-          this.handleFormSubmit(
-            event,
-            this.props.requestType,
-            this.props.productID
-          )
-        }
+        onFinish={event => this.handleFormSubmit(event)}
       >
         <Form.Item
           name="Nombre"
@@ -97,8 +79,6 @@ class ProductCreateForm extends React.Component {
             }
           ]}
           label="Nombre"
-          key={this.state.currProd.product_name}
-          defaultValue={this.state.currProd.product_name}
         >
           <Input name="name" placeholder="Nombre del producto" />
         </Form.Item>
@@ -111,13 +91,15 @@ class ProductCreateForm extends React.Component {
               required: true
             }
           ]}
-          key={this.state.currProd.provider}
         >
           <Select
-            defaultValue={this.state.currProd.provider}
+            showSearch
             name="provider"
             placeholder="Selecciona un proveedor"
-            allowClear
+            onSearch={onSearch}
+            filterOption={(input, option) =>
+              option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
+            }
           >
             {this.state.providers.map(provs => (
               <Option value={provs.id} key={provs.provider_name}>
@@ -134,14 +116,8 @@ class ProductCreateForm extends React.Component {
               required: true
             }
           ]}
-          key={this.state.currProd.is_special}
         >
-          <Select
-            defaultValue={this.state.currProd.is_special}
-            name="special"
-            placeholder="Is it Special?"
-            allowClear
-          >
+          <Select name="special" placeholder="Is it Special?" allowClear>
             <Option value={true}>Yes</Option>
             <Option value={false}>No</Option>
           </Select>
@@ -154,13 +130,8 @@ class ProductCreateForm extends React.Component {
               required: true
             }
           ]}
-          key={this.state.currProd.is_active}
         >
-          <Select
-            defaultValue={this.state.currProd.is_active}
-            name="active"
-            placeholder="Is it Active?"
-          >
+          <Select name="active" placeholder="Is it Active?">
             <Option value={true}>Yes</Option>
             <Option value={false}>No</Option>
           </Select>
@@ -169,7 +140,7 @@ class ProductCreateForm extends React.Component {
         <br />
         <Form.Item>
           <Button type="primary" htmlType="submit">
-            {this.props.btnText}
+            Create
           </Button>
         </Form.Item>
       </Form>

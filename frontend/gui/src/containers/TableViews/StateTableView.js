@@ -1,6 +1,6 @@
 import React from "react";
 import States from "../../components/Entidades/State";
-import ProductCreateForm from "../../components/CreateForms/ProductCreateForm";
+import StateCreateForm from "../../components/CreateForms/StateCreateForm";
 import axios from "axios";
 
 class StateTable extends React.Component {
@@ -42,7 +42,7 @@ class StateTable extends React.Component {
       <div>
         <States data={lista} />
         <h2>Create Product</h2>
-        <ProductCreateForm requestType="post" btnText="Add" productID={null} />
+        <StateCreateForm />
       </div>
     );
   }
