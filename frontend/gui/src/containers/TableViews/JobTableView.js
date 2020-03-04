@@ -1,6 +1,6 @@
 import React from "react";
 import Jobs from "../../components/Entidades/Job";
-import ProductCreateForm from "../../components/CreateForms/ProductCreateForm";
+import JobCreateForm from "../../components/CreateForms/JobCreateForm";
 import axios from "axios";
 
 class JobTable extends React.Component {
@@ -43,8 +43,8 @@ class JobTable extends React.Component {
     return (
       <div>
         <Jobs data={lista} />
-        <h2>Create Product</h2>
-        <ProductCreateForm requestType="post" btnText="Add" productID={null} />
+        <h2>Create Job</h2>
+        <JobCreateForm />
       </div>
     );
   }

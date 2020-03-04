@@ -1,6 +1,6 @@
 import React from "react";
 import ExchangeRates from "../../components/Entidades/ExchangeRate";
-import ProductCreateForm from "../../components/CreateForms/ProductCreateForm";
+import ExchangeRateCreateForm from "../../components/CreateForms/ExchangeRateCreateForm";
 import axios from "axios";
 
 class ExchangeRateTable extends React.Component {
@@ -46,7 +46,7 @@ class ExchangeRateTable extends React.Component {
       <div>
         <ExchangeRates data={lista} />
         <h2>Create Product</h2>
-        <ProductCreateForm requestType="post" btnText="Add" productID={null} />
+        <ExchangeRateCreateForm />
       </div>
     );
   }

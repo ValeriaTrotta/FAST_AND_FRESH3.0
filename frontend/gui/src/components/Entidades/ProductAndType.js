@@ -13,6 +13,11 @@ const columns = [
     key: "type_of_product" + "id"
   },
   {
+    title: "Producto Activo",
+    dataIndex: "is_active",
+    key: "is_active" + "id"
+  },
+  {
     title: "View",
     key: "operation",
     fixed: "right",
