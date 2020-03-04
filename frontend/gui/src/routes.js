@@ -29,6 +29,8 @@ import JobTable from "./containers/TableViews/JobTableView";
 import IVATable from "./containers/TableViews/IVATableView";
 import ProviderTable from "./containers/TableViews/ProviderTableView";
 import ProviderPhoneTable from "./containers/TableViews/ProviderPhoneTableView";
+import Top5Table from "./containers/TableViews/Top5TableView";
+import Top5MenosTable from "./containers/TableViews/Top5MenosTableView";
 
 const BaseRouter = () => (
   <div>
@@ -61,6 +63,8 @@ const BaseRouter = () => (
     <Route exact path="/iva/" component={IVATable} />
     <Route exact path="/provider/" component={ProviderTable} />
     <Route exact path="/providerphone/" component={ProviderPhoneTable} />
+    <Route exact path="/top5/" component={Top5Table} />
+    <Route exact path="/top5menos/" component={Top5MenosTable} />
   </div>
 );
 

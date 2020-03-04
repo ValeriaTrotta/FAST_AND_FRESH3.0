@@ -388,7 +388,7 @@ def top_5_productos_mas_vendidos(request):
     cantidad = []
 
     query = Batch.objects.values('product_name__product_name').annotate(
-        a=Sum('units_sold')).order_by('-a')[0:5]
+        a=Sum('units_sold')).order_by('-a')[:5]
 
     for x in query:
         arreglo.append(x['product_name__product_name'])
