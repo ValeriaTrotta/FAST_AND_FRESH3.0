@@ -11,7 +11,7 @@ function onSearch(val) {
   console.log("search:", val);
 }
 
-class ProductCreateForm extends React.Component {
+class ProductEditForm extends React.Component {
   formRef = React.createRef();
 
   onFinish = values => {
@@ -28,16 +28,14 @@ class ProductCreateForm extends React.Component {
   };
 
   componentDidMount() {
-    if (this.props.productID !== null) {
-      axios
-        .get(`http://127.0.0.1:8000/api/product/${this.props.productID}/`)
-        .then(res => {
-          this.setState({
-            currProd: res.data
-          });
-          console.log("current", this.props.producID);
+    console.log(this.props);
+    axios
+      .get(`http://127.0.0.1:8000/api/product/${this.props.id}`)
+      .then(res => {
+        this.setState({
+          currProd: res.data
         });
-    }
+      });
     axios.get("http://127.0.0.1:8000/api/provider/").then(res => {
       this.setState({
         providers: res.data
@@ -54,7 +52,7 @@ class ProductCreateForm extends React.Component {
     const is_special = event.Special;
 
     return axios
-      .post("http://127.0.0.1:8000/api/product/", {
+      .put(`http://127.0.0.1:8000/api/product/${productId}/`, {
         provider: provider,
         product_name: product_name,
         is_active: is_active,
@@ -69,18 +67,14 @@ class ProductCreateForm extends React.Component {
       <Form
         ref={this.formRef}
         name="control-ref"
-        onFinish={event => this.handleFormSubmit(event)}
+        onFinish={event => this.handleFormSubmit(event, this.props.id)}
       >
-        <Form.Item
-          name="Nombre"
-          rules={[
-            {
-              required: true
-            }
-          ]}
-          label="Nombre"
-        >
-          <Input name="name" placeholder="Nombre del producto" />
+        <Form.Item name="Nombre" label="Nombre">
+          <Input
+            defaultValue={this.state.currProd.product_name}
+            name="name"
+            placeholder={this.state.currProd.product_name}
+          />
         </Form.Item>
 
         <Form.Item
@@ -95,7 +89,8 @@ class ProductCreateForm extends React.Component {
           <Select
             showSearch
             name="provider"
-            placeholder="Selecciona un proveedor"
+            defaultValue={this.state.currProd.provider}
+            placeholder={this.state.currProd.provider}
             onSearch={onSearch}
             filterOption={(input, option) =>
               option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
@@ -117,7 +112,11 @@ class ProductCreateForm extends React.Component {
             }
           ]}
         >
-          <Select name="special" placeholder="Is it Special?" allowClear>
+          <Select
+            defaultValue={this.state.currProd.is_special}
+            name="special"
+            placeholder="Is it Special?"
+          >
             <Option value={true}>Yes</Option>
             <Option value={false}>No</Option>
           </Select>
@@ -131,7 +130,11 @@ class ProductCreateForm extends React.Component {
             }
           ]}
         >
-          <Select name="active" placeholder="Is it Active?">
+          <Select
+            defaultValue={this.state.currProd.is_active}
+            name="active"
+            placeholder="Is it Active?"
+          >
             <Option value={true}>Yes</Option>
             <Option value={false}>No</Option>
           </Select>
@@ -140,7 +143,7 @@ class ProductCreateForm extends React.Component {
         <br />
         <Form.Item>
           <Button type="primary" htmlType="submit">
-            Create
+            Edit
           </Button>
         </Form.Item>
       </Form>
@@ -148,4 +151,4 @@ class ProductCreateForm extends React.Component {
   }
 }
 
-export default ProductCreateForm;
+export default ProductEditForm;

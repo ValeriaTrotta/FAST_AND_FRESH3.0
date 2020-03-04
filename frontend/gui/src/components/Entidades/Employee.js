@@ -3,7 +3,7 @@ import { Table } from "antd";
 
 const columns = [
   {
-    title: "Product ID",
+    title: "ID",
     dataIndex: "id",
     key: "id"
   },

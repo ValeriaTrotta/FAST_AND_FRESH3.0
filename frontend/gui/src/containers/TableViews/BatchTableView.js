@@ -35,23 +35,23 @@ class BatchTable extends React.Component {
         };
         lista.push(item);
       }
-      if (!batch.is_active) {
-        const item = {
-          id: batch.id,
-          product_name: batch.product_name,
-          units: batch.units,
-          elaboration_date: batch.elaboration_date,
-          expiration_date: batch.expiration_date,
-          price_dolars_u: batch.price_dolars_u,
-          units_sold: batch.units_sold,
-          units_lost: batch.units_lost,
-          discount: batch.discount,
-          price_points: batch.price_points,
-          store: batch.store,
-          is_active: "Inactivo"
-        };
-        lista.push(item);
-      }
+      // if (!batch.is_active) {
+      //   const item = {
+      //     id: batch.id,
+      //     product_name: batch.product_name,
+      //     units: batch.units,
+      //     elaboration_date: batch.elaboration_date,
+      //     expiration_date: batch.expiration_date,
+      //     price_dolars_u: batch.price_dolars_u,
+      //     units_sold: batch.units_sold,
+      //     units_lost: batch.units_lost,
+      //     discount: batch.discount,
+      //     price_points: batch.price_points,
+      //     store: batch.store,
+      //     is_active: "Inactivo"
+      //   };
+      //   lista.push(item);
+      // }
     });
     return (
       <div>

@@ -1,17 +1,15 @@
 import React from "react";
-import {
-  Form,
-  Input,
-  Button,
-  Select,
-  InputNumber,
-  Radio,
-  DatePicker,
-  TimePicker
-} from "antd";
+import { Form, Input, Button, Select, InputNumber, Radio } from "antd";
 import axios from "axios";
 
 const { Option } = Select;
+
+function onChange(value) {
+  console.log("changed", value);
+}
+function onSearch(val) {
+  console.log("search:", val);
+}
 
 const config = {
   rules: [{ type: "object", required: true, message: "Please select time!" }]
@@ -27,11 +25,7 @@ const validateMessages = {
   }
 };
 
-function onChange(value) {
-  console.log("changed", value);
-}
-
-class CashRegisterCreateForm extends React.Component {
+class CashRegisterEditForm extends React.Component {
   formRef = React.createRef();
 
   onFinish = values => {
@@ -43,20 +37,33 @@ class CashRegisterCreateForm extends React.Component {
   };
 
   state = {
-    employees: []
+    employees: [],
+    currCash: {},
+    cashregisters: []
   };
 
   componentDidMount() {
+    console.log(this.props);
+    axios
+      .get(`http://127.0.0.1:8000/api/cashregister/${this.props.id}`)
+      .then(res => {
+        this.setState({
+          currCash: res.data
+        });
+      });
     axios.get("http://127.0.0.1:8000/api/employee/").then(res => {
       this.setState({
         employees: res.data
       });
     });
+    axios.get("http://127.0.0.1:8000/api/cashregister/").then(res => {
+      this.setState({
+        cashregisters: res.data
+      });
+    });
   }
 
-  handleFormSubmit = event => {
-    // event.preventDefault();
-
+  handleFormSubmit = (event, productId) => {
     let valida = true;
     this.state.cashregisters.forEach(cashregister => {
       if (cashregister.employee_id == event.Empleado) {
@@ -70,7 +77,7 @@ class CashRegisterCreateForm extends React.Component {
       const is_active = event.Active;
 
       return axios
-        .post("http://127.0.0.1:8000/api/cashregister/", {
+        .put(`http://127.0.0.1:8000/api/cashregister/${productId}/`, {
           employee_id: employee_id,
           is_active: is_active
         })
@@ -86,7 +93,7 @@ class CashRegisterCreateForm extends React.Component {
       <Form
         ref={this.formRef}
         name="control-ref"
-        onFinish={event => this.handleFormSubmit(event)}
+        onFinish={event => this.handleFormSubmit(event, this.props.id)}
       >
         <Form.Item
           name="Empleado"
@@ -97,7 +104,11 @@ class CashRegisterCreateForm extends React.Component {
             }
           ]}
         >
-          <Select name="employee" placeholder="Seleccione a un Empleado">
+          <Select
+            name="employee"
+            defaultValue={this.state.currCash.employee_id}
+            placeholder={this.state.currCash.employee_id}
+          >
             {this.state.employees.map(provs => (
               <Option value={provs.id} key={provs.employee_name}>
                 {provs.employee_name}
@@ -115,7 +126,12 @@ class CashRegisterCreateForm extends React.Component {
             }
           ]}
         >
-          <Select name="active" placeholder="Is it Active?">
+          <Select
+            defaultValue={this.state.currCash.is_active}
+            placeholder={this.state.currCash.is_active}
+            name="active"
+            placeholder="Is it Active?"
+          >
             <Option value={true}>Yes</Option>
             <Option value={false}>No</Option>
           </Select>
@@ -124,7 +140,7 @@ class CashRegisterCreateForm extends React.Component {
         <br />
         <Form.Item>
           <Button type="primary" htmlType="submit">
-            Create
+            Edit
           </Button>
         </Form.Item>
       </Form>
@@ -132,4 +148,4 @@ class CashRegisterCreateForm extends React.Component {
   }
 }
 
-export default CashRegisterCreateForm;
+export default CashRegisterEditForm;

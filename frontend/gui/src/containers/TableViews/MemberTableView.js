@@ -33,19 +33,19 @@ class MemberTable extends React.Component {
         };
         lista.push(item);
       }
-      if (!member.is_active) {
-        const item = {
-          id: member.id,
-          member_points: member.member_points,
-          member_email: member.member_email,
-          member_start_date: member.member_start_date,
-          member_pay_date: member.member_pay_date,
-          client: member.client,
-          member_birth_date: member.member_birth_date,
-          is_active: "Inactivo"
-        };
-        lista.push(item);
-      }
+      // if (!member.is_active) {
+      //   const item = {
+      //     id: member.id,
+      //     member_points: member.member_points,
+      //     member_email: member.member_email,
+      //     member_start_date: member.member_start_date,
+      //     member_pay_date: member.member_pay_date,
+      //     client: member.client,
+      //     member_birth_date: member.member_birth_date,
+      //     is_active: "Inactivo"
+      //   };
+      //   lista.push(item);
+      // }
     });
 
     return (

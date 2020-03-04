@@ -10,7 +10,6 @@ import {
   TimePicker
 } from "antd";
 import axios from "axios";
-import ProductCreateForm from "./ProductCreateForm";
 
 const { Option } = Select;
 const { MonthPicker, RangePicker } = DatePicker;
@@ -36,7 +35,7 @@ function onChange(value) {
   console.log("changed", value);
 }
 
-class BatchCreateForm extends React.Component {
+class BatchEditForm extends React.Component {
   formRef = React.createRef();
 
   onFinish = values => {
@@ -54,12 +53,17 @@ class BatchCreateForm extends React.Component {
   };
 
   componentDidMount() {
+    console.log("hols", this.props);
+    axios.get(`http://127.0.0.1:8000/api/batch/${this.props.id}/`).then(res => {
+      this.setState({
+        currBatch: res.data
+      });
+    });
     axios.get("http://127.0.0.1:8000/api/product/").then(res => {
       this.setState({
         products: res.data
       });
     });
-
     axios.get("http://127.0.0.1:8000/api/store/").then(res => {
       this.setState({
         stores: res.data
@@ -67,7 +71,7 @@ class BatchCreateForm extends React.Component {
     });
   }
 
-  handleFormSubmit = event => {
+  handleFormSubmit = (event, id) => {
     // event.preventDefault();
     var moment = require("moment");
     const product_name = event.Nombre;
@@ -82,7 +86,7 @@ class BatchCreateForm extends React.Component {
     const store = event.Sucursal;
 
     return axios
-      .post("http://127.0.0.1:8000/api/batch/", {
+      .put("http://127.0.0.1:8000/api/batch/", {
         product_name: product_name,
         units: units,
         elaboration_date: elaboration_date,
@@ -103,13 +107,7 @@ class BatchCreateForm extends React.Component {
       <Form
         ref={this.formRef}
         name="control-ref"
-        onFinish={event =>
-          this.handleFormSubmit(
-            event,
-            this.props.requestType,
-            this.props.batchID
-          )
-        }
+        onFinish={event => this.handleFormSubmit(event, this.props.id)}
       >
         <Form.Item
           name="Nombre"
@@ -125,7 +123,6 @@ class BatchCreateForm extends React.Component {
             defaultValue={this.state.currBatch.product_name}
             name="nombre"
             placeholder="Selecciona un Producto"
-            allowClear
           >
             {this.state.products.map(provs => (
               <Option value={provs.id} key={provs.product_name}>
@@ -140,7 +137,10 @@ class BatchCreateForm extends React.Component {
           label="Units"
           rules={[{ required: true, type: "number", min: 0 }]}
         >
-          <InputNumber />
+          <InputNumber
+            placeholder={this.state.currBatch.units}
+            defaultValue={this.state.currBatch.units}
+          />
         </Form.Item>
         <Form.Item name="Dates" label="RangePicker" {...rangeConfig}>
           <RangePicker />
@@ -151,15 +151,22 @@ class BatchCreateForm extends React.Component {
           label="Price in dolars"
           rules={[{ required: true, type: "number", min: 0 }]}
         >
-          <InputNumber />
+          <InputNumber
+            placeholder={this.state.currBatch.price_dolars_u}
+            defaultValue={this.state.currBatch.price_dolars_u}
+          />
         </Form.Item>
 
         <Form.Item
           name="Descuento"
           label="Discount"
           rules={[{ required: true, type: "number", min: 0.0, max: 1 }]}
+          defaultValue={this.state.currBatch.discount}
         >
-          <InputNumber />
+          <InputNumber
+            placeholder={this.state.currBatch.discount}
+            defaultValue={this.state.currBatch.discount}
+          />
         </Form.Item>
         <Form.Item
           name="Sucursal"
@@ -188,7 +195,7 @@ class BatchCreateForm extends React.Component {
         <br />
         <Form.Item>
           <Button type="primary" htmlType="submit">
-            Create
+            Edit
           </Button>
         </Form.Item>
       </Form>
@@ -196,4 +203,4 @@ class BatchCreateForm extends React.Component {
   }
 }
 
-export default BatchCreateForm;
+export default BatchEditForm;

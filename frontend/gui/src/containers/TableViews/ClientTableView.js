@@ -33,19 +33,19 @@ class ClientTable extends React.Component {
         };
         lista.push(item);
       }
-      if (!client.is_active) {
-        const item = {
-          id: client.id,
-          client_name: client.client_name,
-          client_last_name: client.client_last_name,
-          client_cedula: client.client_cedula,
-          client_phone: client.client_phone,
-          client_gender: client.client_gender,
-          zona: client.zona,
-          is_active: "Inactivo"
-        };
-        lista.push(item);
-      }
+      // if (!client.is_active) {
+      //   const item = {
+      //     id: client.id,
+      //     client_name: client.client_name,
+      //     client_last_name: client.client_last_name,
+      //     client_cedula: client.client_cedula,
+      //     client_phone: client.client_phone,
+      //     client_gender: client.client_gender,
+      //     zona: client.zona,
+      //     is_active: "Inactivo"
+      //   };
+      //   lista.push(item);
+      // }
     });
 
     console.log(lista);

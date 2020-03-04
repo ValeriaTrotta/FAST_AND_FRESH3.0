@@ -135,6 +135,7 @@ class Delivery (models.Model):
     zona = models.ForeignKey(
         'Zona', on_delete=models.CASCADE, null=False, blank=False)
     address = models.CharField(max_length=200)
+    bill_time = models.TimeField()
     is_active = models.BooleanField()
 
 

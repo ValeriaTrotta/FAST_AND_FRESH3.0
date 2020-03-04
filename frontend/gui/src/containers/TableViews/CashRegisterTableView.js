@@ -13,7 +13,7 @@ class CashRegisterTable extends React.Component {
   componentDidMount() {
     axios.get("http://127.0.0.1:8000/api/cashregister/").then(res => {
       this.setState({
-        deliveries: res.data
+        cashregisters: res.data
       });
     });
   }

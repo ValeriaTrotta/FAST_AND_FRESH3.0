@@ -13,11 +13,6 @@ const columns = [
     key: "product_name" + "id"
   },
   {
-    title: "Cash Register Activo",
-    dataIndex: "is_active",
-    key: "is_active" + "id"
-  },
-  {
     title: "Activo",
     dataIndex: "is_active",
     key: "is_active" + "id"

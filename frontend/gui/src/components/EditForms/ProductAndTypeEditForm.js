@@ -7,8 +7,11 @@ const { Option } = Select;
 function onChange(value) {
   console.log("changed", value);
 }
+function onSearch(val) {
+  console.log("search:", val);
+}
 
-class ProductAndTypeCreateForm extends React.Component {
+class ProductAndTypeEditForm extends React.Component {
   formRef = React.createRef();
 
   onFinish = values => {
@@ -20,31 +23,40 @@ class ProductAndTypeCreateForm extends React.Component {
   };
 
   state = {
+    currProd: {},
     products: [],
-    typeproducts: []
+    products2: [],
+    typeofproducts: []
   };
 
   componentDidMount() {
+    axios
+      .get(`http://127.0.0.1:8000/api/product_type/${this.props.id}`)
+      .then(res => {
+        this.setState({
+          currProd: res.data
+        });
+      });
     axios.get("http://127.0.0.1:8000/api/product/").then(res => {
       this.setState({
         products: res.data
       });
+      console.log(this.state.products);
     });
     axios.get("http://127.0.0.1:8000/api/type_of_product/").then(res => {
       this.setState({
-        typeproducts: res.data
+        typeofproducts: res.data
       });
     });
   }
 
-  handleFormSubmit = event => {
+  handleFormSubmit = (event, productId) => {
     // event.preventDefault();
     const product_name = event.Nombre;
     const type_of_product = event.Tipo;
     const is_active = event.Active;
-
     return axios
-      .post("http://127.0.0.1:8000/api/product_type/", {
+      .put(`http://127.0.0.1:8000/api/product_type/${productId}/`, {
         product_name: product_name,
         type_of_product: type_of_product,
         is_active: is_active
@@ -75,7 +87,11 @@ class ProductAndTypeCreateForm extends React.Component {
             }
           ]}
         >
-          <Select name="product" placeholder="Selecciona un Producto">
+          <Select
+            defaultValue={this.state.currProd.product_name}
+            name="product"
+            placeholder={this.state.currProd.product_name}
+          >
             {this.state.products.map(provs => (
               <Option value={provs.id} key={provs.product_name}>
                 {provs.product_name}
@@ -93,8 +109,12 @@ class ProductAndTypeCreateForm extends React.Component {
             }
           ]}
         >
-          <Select name="type" placeholder="Selecciona una Categoria">
-            {this.state.typeproducts.map(provs => (
+          <Select
+            name="type"
+            defaultValue={this.state.currProd.type_of_product}
+            placeholder={this.state.currProd.type_of_product}
+          >
+            {this.state.typeofproducts.map(provs => (
               <Option value={provs.id} key={provs.type}>
                 {provs.type}
               </Option>
@@ -111,7 +131,11 @@ class ProductAndTypeCreateForm extends React.Component {
             }
           ]}
         >
-          <Select name="active" placeholder="Is it Active?">
+          <Select
+            defaultValue={this.state.currProd.is_active}
+            name="active"
+            placeholder="Is it Active?"
+          >
             <Option value={true}>Yes</Option>
             <Option value={false}>No</Option>
           </Select>
@@ -120,7 +144,7 @@ class ProductAndTypeCreateForm extends React.Component {
         <br />
         <Form.Item>
           <Button type="primary" htmlType="submit">
-            Add
+            Edit
           </Button>
         </Form.Item>
       </Form>
@@ -128,4 +152,4 @@ class ProductAndTypeCreateForm extends React.Component {
   }
 }
 
-export default ProductAndTypeCreateForm;
+export default ProductAndTypeEditForm;

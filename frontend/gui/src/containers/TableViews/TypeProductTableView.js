@@ -28,14 +28,14 @@ class TypeProductTable extends React.Component {
         };
         lista.push(item);
       }
-      if (!typeproduct.is_active) {
-        const item = {
-          id: typeproduct.id,
-          type: typeproduct.type,
-          is_active: "Inactivo"
-        };
-        lista.push(item);
-      }
+      // if (!typeproduct.is_active) {
+      //   const item = {
+      //     id: typeproduct.id,
+      //     type: typeproduct.type,
+      //     is_active: "Inactivo"
+      //   };
+      //   lista.push(item);
+      // }
     });
 
     console.log(lista);
