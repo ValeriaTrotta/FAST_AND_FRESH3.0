@@ -362,22 +362,38 @@ class ProviderPhoneViewSet(viewsets.ModelViewSet):
 #     return HttpResponse(str(meses[z])+': '+str(mayor))
 
 
-# QUERIES ------------------------------------------------------------------
-# -----------------------------------------------------------
+# QUERIES -----------------------------------------------------------------------------------------------------------------------------
 
+def query_set_1(request):
 
-def query_set_1(request, *args, **kwargs):
-    query = Product.objects.filter(is_active=0)
-    return HttpResponse(query)
+    query = Product.objects.values('product_name', 'provider')
 
+    n = []
+    p = []
+
+    for x in query:
+        n.append(x['product_name'])
+        p.append(x['provider'])
+
+    v = []
+
+    for x in range(len(n)):
+        valor = {
+            'nombre':n[x], 'proveedor':p[x]
+        }
+        v.append(valor)
+
+    data = {
+        'algo':v,
+    }
+
+    return JsonResponse(data)
 
 # def query_set_2(request, *args, **kwargs):
 #     query = Batch.objects.values('product_name__product_name',
 #                                  'units_sold').order_by('-units_sold')[0:1]
 #     # Para referenciar a otra tabla se pone "__"
 #     return HttpResponse(query)  # Ej: product_name__product_name
-
-
 # Top 5 productos más vendidos (Analizando los productos vendidos de
 # cada batch). Suma las unidades vendidas de los batchs con el mismo nombre
 def top_5_productos_mas_vendidos(request):
@@ -467,8 +483,6 @@ def top_5_productos_mas_vendidos_miembros(request):
     }
 
     return JsonResponse(data)
-<<<<<<< HEAD
-=======
 
 
 # Lista completa de productos que dan perdida de mayor a menor
@@ -585,4 +599,3 @@ def ventas_diarias(request, dia, mes, ano):
     }
 
     return JsonResponse(data)
->>>>>>> val
