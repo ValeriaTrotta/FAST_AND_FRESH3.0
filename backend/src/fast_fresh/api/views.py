@@ -583,3 +583,120 @@ def ventas_diarias(request, dia, mes, ano):
     }
 
     return JsonResponse(data)
+
+
+def dinero_caja_dia(request, dia, mes, ano):
+
+    # Un JSON se establece con {}
+
+    arreglo = []
+    cantidad = []
+
+    query = CashRegisterBills.objects.values(
+        'cash_register__employee_id__employee_name').annotate(
+        a=Sum('bill__bill_sub_total')).filter(
+            bill_id__bill_date__year=ano,
+            bill_id__bill_date__month=mes,
+            bill_id__bill_date__day=dia).order_by('-a')
+
+    for x in query:
+        arreglo.append(x['cash_register__employee_id__employee_name'])
+        cantidad.append(x['a'])
+
+    b = []
+
+    for x in range(len(arreglo)):
+        c = {'Cajera/o': arreglo[x], 'Cobro': cantidad[x]}
+        b.append(c)
+
+    data = {
+        'algo': b,
+    }
+
+    return JsonResponse(data)
+
+
+def dinero_intervalo_dias(request, dia1, mes1, ano1, dia2, mes2, ano2):
+
+    arreglo = []
+    cantidad = []
+
+    query = BillDetails.objects.values(
+        'bill_id__bill_date').annotate(
+        a=Sum('bill_id__bill_sub_total')).filter(
+            bill_id__bill_date__year__gte=ano1,
+            bill_id__bill_date__month__gte=mes1,
+            bill_id__bill_date__day__gte=dia1,
+            bill_id__bill_date__year__lte=ano2,
+            bill_id__bill_date__month__lte=mes2,
+            bill_id__bill_date__day__lte=dia2).order_by('-a')
+
+    for x in query:
+        arreglo.append(x['bill_id__bill_date'])
+        cantidad.append(x['a'])
+
+    b = []
+
+    for x in range(len(arreglo)):
+        c = {'Fecha': arreglo[x], 'Ventas Totales Día': cantidad[x]}
+        b.append(c)
+
+    data = {
+        'algo': b,
+    }
+
+    return JsonResponse(data)
+
+
+# def dinero_caja_dia(request, dia, mes, ano):
+
+#     cantidad = []
+
+#     mes_cumple = Member.objects.values('member_birth_date__month')
+#     dia_cumple = Member.objects.values('member_birth_date__day')
+#     ano_cumple = Member.objects.values('member_birth_date__year')
+
+#     if (mes_cumple < mes and dia_cumple < dia):
+#         edad = ano - ano_cumple
+#     else:
+#         edad = ano - ano_cumple - 1
+
+#     for x in Member(len):
+#         if (edad < 10):
+#             menores_10 = menores_10 + 1
+#         elif (edad > 9 and edad < 20):
+#             entre_10_20 = entre_10_20 + 1
+#         elif (edad > 19 and edad < 30):
+#             entre_20_30 = entre_10_30 + 1
+#         elif (edad > 29 and edad < 40):
+#             entre_30_40 = entre_30_40 + 1
+#         elif (edad > 39 and edad < 50):
+#             entre_40_50 = entre_40_50 + 1
+#         elif (edad > 49 and edad < 60):
+#             entre_50_60 = entre_50_60 + 1
+#         elif (edad > 59 and edad < 70):
+#             entre_60_70 = entre_60_70 + 1
+#         elif (edad >= 70):
+#             mayores_de_70 = mayores_de_70 + 1
+
+#     query = Member.objects.values().annotate(
+#         a=Sum('member_birth_date')).filter(
+#             bill_id__bill_date__year=ano,
+#             bill_id__bill_date__month=mes,
+#             bill_id__bill_date__day=dia).order_by('-a')
+
+#     for x in query:
+#         arreglo.append(x['cash_register__employee_id__employee_name'])
+#         cantidad.append(x['a'])
+
+#     b = []
+
+#     for x in range(len(arreglo)):
+#         c = {'Cajera/o': arreglo[x], 'Cobro': cantidad[x]}
+#         b.append(c)
+
+#     data = {
+#         'algo': b,
+#     }
+
+#     return JsonResponse(data)
