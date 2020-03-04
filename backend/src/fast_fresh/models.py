@@ -136,6 +136,7 @@ class Delivery (models.Model):
     zona = models.ForeignKey(
         'Zona', on_delete=models.CASCADE, null=False, blank=False)
     address = models.CharField(max_length=200)
+    bill_time = models.TimeField()
     is_active = models.BooleanField()
 
 
@@ -246,7 +247,7 @@ class EmployeeStore(models.Model):
 
 class Job(models.Model):
     job_name = models.CharField(max_length=30)
-    job_salary = models.FloatField
+    job_salary = models.FloatField()
     is_active = models.BooleanField()
 
     def __str__(self):

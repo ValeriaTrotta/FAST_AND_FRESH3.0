@@ -1,6 +1,6 @@
 import React from "react";
 import Members from "../../components/Entidades/Member";
-import ProductCreateForm from "../../components/CreateForms/ProductCreateForm";
+import MemberCreateForm from "../../components/CreateForms/MemberCreateForm";
 import axios from "axios";
 
 class MemberTable extends React.Component {
@@ -33,26 +33,26 @@ class MemberTable extends React.Component {
         };
         lista.push(item);
       }
-      if (!member.is_active) {
-        const item = {
-          id: member.id,
-          member_points: member.member_points,
-          member_email: member.member_email,
-          member_start_date: member.member_start_date,
-          member_pay_date: member.member_pay_date,
-          client: member.client,
-          member_birth_date: member.member_birth_date,
-          is_active: "Inactivo"
-        };
-        lista.push(item);
-      }
+      // if (!member.is_active) {
+      //   const item = {
+      //     id: member.id,
+      //     member_points: member.member_points,
+      //     member_email: member.member_email,
+      //     member_start_date: member.member_start_date,
+      //     member_pay_date: member.member_pay_date,
+      //     client: member.client,
+      //     member_birth_date: member.member_birth_date,
+      //     is_active: "Inactivo"
+      //   };
+      //   lista.push(item);
+      // }
     });
 
     return (
       <div>
         <Members data={lista} />
-        <h2>Create Product</h2>
-        <ProductCreateForm requestType="post" btnText="Add" productID={null} />
+        <h2>Create Member</h2>
+        <MemberCreateForm />
       </div>
     );
   }

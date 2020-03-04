@@ -1,6 +1,6 @@
 import React from "react";
 import StoreBosses from "../../components/Entidades/StoreBoss";
-import ProductCreateForm from "../../components/CreateForms/ProductCreateForm";
+import StoreBossCreateForm from "../../components/CreateForms/StoreBossCreateForm";
 import axios from "axios";
 
 class StoreBossTable extends React.Component {
@@ -45,8 +45,8 @@ class StoreBossTable extends React.Component {
     return (
       <div>
         <StoreBosses data={lista} />
-        <h2>Create Product</h2>
-        <ProductCreateForm requestType="post" btnText="Add" productID={null} />
+        <h2>Asign Store Boss</h2>
+        <StoreBossCreateForm />
       </div>
     );
   }

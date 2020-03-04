@@ -8,6 +8,11 @@ const columns = [
     key: "id"
   },
   {
+    title: "Name",
+    dataIndex: "state_name",
+    key: "state_name" + "id"
+  },
+  {
     title: "Activo",
     dataIndex: "is_active",
     key: "is_active" + "id"

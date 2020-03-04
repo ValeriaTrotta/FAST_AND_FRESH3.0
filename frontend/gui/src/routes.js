@@ -29,8 +29,17 @@ import JobTable from "./containers/TableViews/JobTableView";
 import IVATable from "./containers/TableViews/IVATableView";
 import ProviderTable from "./containers/TableViews/ProviderTableView";
 import ProviderPhoneTable from "./containers/TableViews/ProviderPhoneTableView";
+<<<<<<< HEAD
 import Top5Table from "./containers/TableViews/Top5TableView";
 import Top5MenosTable from "./containers/TableViews/Top5MenosTableView";
+=======
+import TypeProductDetail from "./containers/TypeProductDetailView";
+import ProductAndTypeDetail from "./containers/ProductAndTypeDetailView";
+import ClientDetail from "./containers/DetailViews/ClientDetailView";
+import MemberDetail from "./containers/DetailViews/MemberDetailView";
+import CashRegisterDetail from "./containers/DetailViews/CashRegisterDetailView";
+import EmployeeDetail from "./containers/DetailViews/EmployeeDetailView";
+>>>>>>> veru
 
 const BaseRouter = () => (
   <div>
@@ -39,9 +48,21 @@ const BaseRouter = () => (
     <Route exact path="/batch/" component={BatchTable} />
     <Route exact path="/batch/:batchId" component={BatchDetail} />
     <Route exact path="/typeproduct/" component={TypeProductTable} />
+    <Route
+      exact
+      path="/typeproduct/:typeproductId"
+      component={TypeProductDetail}
+    />
     <Route exact path="/productandtype/" component={ProductAndTypeTable} />
+    <Route
+      exact
+      path="/productandtype/:productandtypeId"
+      component={ProductAndTypeDetail}
+    />
     <Route exact path="/client/" component={ClientTable} />
+    <Route exact path="/client/:clientId" component={ClientDetail} />
     <Route exact path="/member/" component={MemberTable} />
+    <Route exact path="/member/:memberId" component={MemberDetail} />
     <Route exact path="/zona/" component={ZonaTable} />
     <Route exact path="/city/" component={CityTable} />
     <Route exact path="/state/" component={StateTable} />
@@ -52,12 +73,18 @@ const BaseRouter = () => (
     <Route exact path="/bill/" component={BillTable} />
     <Route exact path="/billdetail/" component={BillDetailTable} />
     <Route exact path="/cashregister/" component={CashRegisterTable} />
+    <Route
+      exact
+      path="/cashregister/:cashregisterId"
+      component={CashRegisterDetail}
+    />
     <Route exact path="/cashregisterbill/" component={CashRegisterBillTable} />
     <Route exact path="/payment/" component={PaymentTable} />
     <Route exact path="/paymentmethod/" component={PaymentMethodTable} />
     <Route exact path="/currency/" component={CurrencyTable} />
     <Route exact path="/exchangerate/" component={ExchangeRateTable} />
     <Route exact path="/employee/" component={EmployeeTable} />
+    <Route exact path="/employee/:employeeId" component={EmployeeDetail} />
     <Route exact path="/employeestore/" component={EmployeeStoreTable} />
     <Route exact path="/job/" component={JobTable} />
     <Route exact path="/iva/" component={IVATable} />

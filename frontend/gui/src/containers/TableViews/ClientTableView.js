@@ -1,6 +1,6 @@
 import React from "react";
 import Clients from "../../components/Entidades/Client";
-import ProductCreateForm from "../../components/CreateForms/ProductCreateForm";
+import ClientCreateForm from "../../components/CreateForms/ClientCreateForm";
 import axios from "axios";
 
 class ClientTable extends React.Component {
@@ -33,27 +33,27 @@ class ClientTable extends React.Component {
         };
         lista.push(item);
       }
-      if (!client.is_active) {
-        const item = {
-          id: client.id,
-          client_name: client.client_name,
-          client_last_name: client.client_last_name,
-          client_cedula: client.client_cedula,
-          client_phone: client.client_phone,
-          client_gender: client.client_gender,
-          zona: client.zona,
-          is_active: "Inactivo"
-        };
-        lista.push(item);
-      }
+      // if (!client.is_active) {
+      //   const item = {
+      //     id: client.id,
+      //     client_name: client.client_name,
+      //     client_last_name: client.client_last_name,
+      //     client_cedula: client.client_cedula,
+      //     client_phone: client.client_phone,
+      //     client_gender: client.client_gender,
+      //     zona: client.zona,
+      //     is_active: "Inactivo"
+      //   };
+      //   lista.push(item);
+      // }
     });
 
     console.log(lista);
     return (
       <div>
         <Clients data={lista} />
-        <h2>Create Product</h2>
-        {/* <ProductCreateForm requestType="post" btnText="Add" productID={null} /> */}
+        <h2>Agregar Cliente</h2>
+        <ClientCreateForm />
       </div>
     );
   }

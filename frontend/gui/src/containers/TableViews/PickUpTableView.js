@@ -1,6 +1,6 @@
 import React from "react";
 import PickUps from "../../components/Entidades/PickUp";
-import ProductCreateForm from "../../components/CreateForms/ProductCreateForm";
+import PickUpCreateForm from "../../components/CreateForms/PickUpCreateForm";
 import axios from "axios";
 
 class PickUpTable extends React.Component {
@@ -44,7 +44,7 @@ class PickUpTable extends React.Component {
       <div>
         <PickUps data={lista} />
         <h2>Create Product</h2>
-        <ProductCreateForm requestType="post" btnText="Add" productID={null} />
+        <PickUpCreateForm />
       </div>
     );
   }

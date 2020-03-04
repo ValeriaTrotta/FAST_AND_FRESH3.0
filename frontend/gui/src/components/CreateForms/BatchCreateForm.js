@@ -10,8 +10,13 @@ import {
   TimePicker
 } from "antd";
 import axios from "axios";
+import ProductCreateForm from "./ProductCreateForm";
 
 const { Option } = Select;
+const { MonthPicker, RangePicker } = DatePicker;
+const rangeConfig = {
+  rules: [{ type: "array", required: true, message: "Please select time!" }]
+};
 
 const config = {
   rules: [{ type: "object", required: true, message: "Please select time!" }]
@@ -49,16 +54,6 @@ class BatchCreateForm extends React.Component {
   };
 
   componentDidMount() {
-    if (this.props.batchID !== null) {
-      axios
-        .get(`http://127.0.0.1:8000/api/product/${this.props.batchID}/`)
-        .then(res => {
-          this.setState({
-            currBatch: res.data
-          });
-          console.log("current", this.props.batchID);
-        });
-    }
     axios.get("http://127.0.0.1:8000/api/product/").then(res => {
       this.setState({
         products: res.data
@@ -72,58 +67,35 @@ class BatchCreateForm extends React.Component {
     });
   }
 
-  handleFormSubmit = (event, requestType, batchID) => {
+  handleFormSubmit = event => {
     // event.preventDefault();
     var moment = require("moment");
     const product_name = event.Nombre;
     const units = event.Unidades;
-    const elaboration_date = moment(event.ElDate).format("YYYY-MM-DD");
-    const expiration_date = moment(event.ExDate).format("YYYY-MM-DD");
+    const elaboration_date = moment(event.Dates[0]).format("YYYY-MM-DD");
+    const expiration_date = moment(event.Dates[1]).format("YYYY-MM-DD");
     const price_dolars_u = event.PriceD;
-    const units_sold = event.USold;
-    const units_lost = event.ULost;
+    const units_sold = 0;
+    const units_lost = 0;
     const discount = event.Descuento;
     const price_points = 10 * parseInt(event.PriceD);
     const store = event.Sucursal;
 
-    console.log(price_points);
-
-    switch (requestType) {
-      case "post":
-        console.log("entre");
-        return axios
-          .post("http://127.0.0.1:8000/api/batch/", {
-            product_name: product_name,
-            units: units,
-            elaboration_date: elaboration_date,
-            expiration_date: expiration_date,
-            price_dolars_u: price_dolars_u,
-            units_sold: units_sold,
-            units_lost: units_lost,
-            discount: discount,
-            price_points: price_points,
-            store: store
-          })
-          .then(res => console.log(res))
-          .catch(error => console.error(error));
-
-      case "put":
-        return axios
-          .put(`http://127.0.0.1:8000/api/batch/${batchID}/`, {
-            product_name: product_name,
-            units: units,
-            elaboration_date: elaboration_date,
-            expiration_date: expiration_date,
-            price_dolars_u: price_dolars_u,
-            units_sold: units_sold,
-            units_lost: units_lost,
-            discount: discount,
-            price_points: price_points,
-            store: store
-          })
-          .then(res => console.log(res))
-          .catch(error => console.err(error));
-    }
+    return axios
+      .post("http://127.0.0.1:8000/api/batch/", {
+        product_name: product_name,
+        units: units,
+        elaboration_date: elaboration_date,
+        expiration_date: expiration_date,
+        price_dolars_u: price_dolars_u,
+        units_sold: units_sold,
+        units_lost: units_lost,
+        discount: discount,
+        price_points: price_points,
+        store: store
+      })
+      .then(res => console.log(res))
+      .catch(error => console.error(error));
   };
 
   render() {
@@ -170,22 +142,10 @@ class BatchCreateForm extends React.Component {
         >
           <InputNumber />
         </Form.Item>
-        <Form.Item
-          name="ElDate"
-          rules={[{ required: true }]}
-          label="Elaboration Date"
-          {...config}
-        >
-          <DatePicker />
+        <Form.Item name="Dates" label="RangePicker" {...rangeConfig}>
+          <RangePicker />
         </Form.Item>
-        <Form.Item
-          rules={[{ required: true }]}
-          name="ExDate"
-          label="Expiration Date"
-          {...config}
-        >
-          <DatePicker />
-        </Form.Item>
+
         <Form.Item
           name="PriceD"
           label="Price in dolars"
@@ -193,25 +153,11 @@ class BatchCreateForm extends React.Component {
         >
           <InputNumber />
         </Form.Item>
-        <Form.Item
-          name="USold"
-          label="Units Sold"
-          rules={[{ type: "number", min: 0 }]}
-        >
-          <InputNumber />
-        </Form.Item>
-        <Form.Item
-          name="ULost"
-          label="Units Lost"
-          rules={[{ type: "number", min: 0 }]}
-        >
-          <InputNumber />
-        </Form.Item>
 
         <Form.Item
           name="Descuento"
           label="Discount"
-          rules={[{ required: true, type: "number", min: 0.01, max: 1 }]}
+          rules={[{ required: true, type: "number", min: 0.0, max: 1 }]}
         >
           <InputNumber />
         </Form.Item>
@@ -242,7 +188,7 @@ class BatchCreateForm extends React.Component {
         <br />
         <Form.Item>
           <Button type="primary" htmlType="submit">
-            {this.props.btnText}
+            Create
           </Button>
         </Form.Item>
       </Form>

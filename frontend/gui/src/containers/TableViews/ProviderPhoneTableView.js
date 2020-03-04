@@ -1,6 +1,6 @@
 import React from "react";
 import ProviderPhones from "../../components/Entidades/ProviderPhone";
-import ProductCreateForm from "../../components/CreateForms/ProductCreateForm";
+import ProviderPhoneCreateForm from "../../components/CreateForms/ProviderPhoneCreateForm";
 import axios from "axios";
 
 class ProviderPhoneTable extends React.Component {
@@ -43,8 +43,8 @@ class ProviderPhoneTable extends React.Component {
     return (
       <div>
         <ProviderPhones data={lista} />
-        <h2>Create Product</h2>
-        <ProductCreateForm requestType="post" btnText="Add" productID={null} />
+        <h2>Create Provider Phone</h2>
+        <ProviderPhoneCreateForm />
       </div>
     );
   }
