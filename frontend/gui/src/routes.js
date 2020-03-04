@@ -29,17 +29,14 @@ import JobTable from "./containers/TableViews/JobTableView";
 import IVATable from "./containers/TableViews/IVATableView";
 import ProviderTable from "./containers/TableViews/ProviderTableView";
 import ProviderPhoneTable from "./containers/TableViews/ProviderPhoneTableView";
-<<<<<<< HEAD
 import Top5Table from "./containers/TableViews/Top5TableView";
 import Top5MenosTable from "./containers/TableViews/Top5MenosTableView";
-=======
 import TypeProductDetail from "./containers/TypeProductDetailView";
 import ProductAndTypeDetail from "./containers/ProductAndTypeDetailView";
 import ClientDetail from "./containers/DetailViews/ClientDetailView";
 import MemberDetail from "./containers/DetailViews/MemberDetailView";
 import CashRegisterDetail from "./containers/DetailViews/CashRegisterDetailView";
 import EmployeeDetail from "./containers/DetailViews/EmployeeDetailView";
->>>>>>> veru
 
 const BaseRouter = () => (
   <div>
