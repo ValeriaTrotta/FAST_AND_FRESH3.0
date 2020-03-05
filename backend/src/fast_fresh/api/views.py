@@ -515,3 +515,35 @@ def dinero_caja_dia(request, dia, mes, ano):
     }
 
     return JsonResponse(data)
+
+
+def dinero_intervalo_dias(request, dia1, mes1, ano1, dia2, mes2, ano2):
+
+    arreglo = []
+    cantidad = []
+
+    query = CashRegisterBills.objects.values(
+        'cash_register__employee_id__employee_name').annotate(
+        a=Sum('bill__bill_sub_total')).filter(
+            bill_id__bill_date__year__gte=ano1,
+            bill_id__bill_date__month__gte=mes1,
+            bill_id__bill_date__day__gte=dia1,
+            bill_id__bill_date__year__lte=ano2,
+            bill_id__bill_date__month__lte=mes2,
+            bill_id__bill_date__day__lte=dia2).order_by('-a')
+
+    for x in query:
+        arreglo.append(x['cash_register__employee_id__employee_name'])
+        cantidad.append(x['a'])
+
+    b = []
+
+    for x in range(len(arreglo)):
+        c = {'Cajero/a': arreglo[x], 'Dinero': cantidad[x]}
+        b.append(c)
+
+    data = {
+        'algo': b,
+    }
+
+    return JsonResponse(data)
