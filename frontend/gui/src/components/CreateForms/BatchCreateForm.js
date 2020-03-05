@@ -53,6 +53,12 @@ class BatchCreateForm extends React.Component {
     currBatch: {}
   };
 
+  getActives = array => {
+    const activos = array.filter(x => x.is_active === true);
+
+    return activos;
+  };
+
   componentDidMount() {
     axios.get("http://127.0.0.1:8000/api/product/").then(res => {
       this.setState({
@@ -68,7 +74,6 @@ class BatchCreateForm extends React.Component {
   }
 
   handleFormSubmit = event => {
-    // event.preventDefault();
     var moment = require("moment");
     const product_name = event.Nombre;
     const units = event.Unidades;
@@ -80,6 +85,7 @@ class BatchCreateForm extends React.Component {
     const discount = event.Descuento;
     const price_points = 10 * parseInt(event.PriceD);
     const store = event.Sucursal;
+    const is_active = true;
 
     return axios
       .post("http://127.0.0.1:8000/api/batch/", {
@@ -92,7 +98,8 @@ class BatchCreateForm extends React.Component {
         units_lost: units_lost,
         discount: discount,
         price_points: price_points,
-        store: store
+        store: store,
+        is_active: is_active
       })
       .then(res => console.log(res))
       .catch(error => console.error(error));
@@ -121,12 +128,7 @@ class BatchCreateForm extends React.Component {
           ]}
           key={this.state.currBatch.product_name}
         >
-          <Select
-            defaultValue={this.state.currBatch.product_name}
-            name="nombre"
-            placeholder="Selecciona un Producto"
-            allowClear
-          >
+          <Select name="nombre" placeholder="Selecciona un Producto" allowClear>
             {this.state.products.map(provs => (
               <Option value={provs.id} key={provs.product_name}>
                 {provs.product_name}
@@ -171,12 +173,7 @@ class BatchCreateForm extends React.Component {
           ]}
           key={this.state.currBatch.store}
         >
-          <Select
-            defaultValue={this.state.currBatch.store}
-            name="store"
-            placeholder="Selecciona una Sucursal"
-            allowClear
-          >
+          <Select name="store" placeholder="Selecciona una Sucursal" allowClear>
             {this.state.stores.map(provs => (
               <Option value={provs.id} key={provs.store_name}>
                 {provs.store_name}

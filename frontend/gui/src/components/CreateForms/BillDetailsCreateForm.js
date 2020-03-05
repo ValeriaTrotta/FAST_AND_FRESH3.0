@@ -37,15 +37,19 @@ class BillDetailsCreateForm extends React.Component {
       products: [],
       batches: [],
       stores: [],
+      cashregisters: [],
       hasProducts: false,
       productsSelected: [],
       quantitiesSelected: [],
+      batchesSelected: [],
       zonas: [],
-      hasPickUp: false,
+      hasPickUp: true,
       hasDelivery: false,
-      currBill: {}
+      currBill: {},
+      employees: []
     };
     this.handleDelivery = this.handleDelivery.bind(this);
+    this.handlePickUp = this.handlePickUp.bind(this);
   }
 
   componentDidMount() {
@@ -79,6 +83,16 @@ class BillDetailsCreateForm extends React.Component {
         zonas: res.data
       });
     });
+    axios.get("http://127.0.0.1:8000/api/employee/").then(res => {
+      this.setState({
+        employees: res.data
+      });
+    });
+    axios.get("http://127.0.0.1:8000/api/cashregister/").then(res => {
+      this.setState({
+        cashregisters: res.data
+      });
+    });
     // this.setState({
     //   ...this.state,
     //   hasDelivery: true
@@ -101,12 +115,22 @@ class BillDetailsCreateForm extends React.Component {
     });
   };
 
+  handleBatch = (value, index) => {
+    this.state.batchesSelected[index] = value;
+
+    this.setState({
+      quantitiesSelected: this.state.quantitiesSelected
+    });
+  };
+
   handleRemove(index) {
     this.state.productsSelected.splice(index, 1);
     this.state.quantitiesSelected.splice(index, 1);
+    this.state.batchesSelected.splice(index, 1);
     this.setState({
       quantitiesSelected: this.state.quantitiesSelected,
-      productsSelected: this.state.productsSelected
+      productsSelected: this.state.productsSelected,
+      batchesSelected: this.state.batchesSelected
     });
   }
 
@@ -214,7 +238,7 @@ class BillDetailsCreateForm extends React.Component {
                       >
                         {this.state.products.map(product => (
                           <Option value={product.id} key={product.id}>
-                            {product.product_name} (Precio)$
+                            {product.product_name}
                           </Option>
                         ))}
                       </Select>
@@ -255,7 +279,6 @@ class BillDetailsCreateForm extends React.Component {
                     onClick={() => {
                       add();
                       this.setState({
-                        ...this.state,
                         hasProducts: true
                       });
                     }}
@@ -272,8 +295,8 @@ class BillDetailsCreateForm extends React.Component {
         <Form.Item
           name="hasDelivery"
           rules={[{ required: true }]}
-          label="¿Do the client wish to have his/her product delivered?"
-          key={this.state.currBill.delivery}
+          label="¿Desea delivery?"
+          key={this.state.currBill.bill_delivery}
         >
           <Select
             placeholder="Delivery?"
@@ -282,8 +305,8 @@ class BillDetailsCreateForm extends React.Component {
             allowClear
             onChange={this.handleDelivery}
           >
-            <Option value={true}>Yes</Option>
             <Option value={false}>No</Option>
+            <Option value={true}>Sí</Option>
           </Select>
         </Form.Item>
 
@@ -299,18 +322,7 @@ class BillDetailsCreateForm extends React.Component {
               <div>
                 <h3>Delivery</h3>
                 {/* DIRECCIÓN */}
-                <Form.Item
-                  name="Direccion"
-                  label="Direccion"
-                  rules={[{ required: true }]}
-                >
-                  <Input
-                    placeholder="Introduce the Address"
-                    name="direccion"
-                    style={{ width: 200 }}
-                    allowClear
-                  />
-                </Form.Item>
+
                 <Form.Item
                   name="Zona"
                   label="Zona"
@@ -323,8 +335,38 @@ class BillDetailsCreateForm extends React.Component {
                     allowClear
                   >
                     {this.state.zonas.map(zona => (
-                      <Option value={zona.id} key={"zona." + zona.id}>
+                      <Option value={zona.id} key={zona.id}>
                         {zona.zona_name}
+                      </Option>
+                    ))}
+                  </Select>
+                </Form.Item>
+                <Form.Item
+                  name="Direccion"
+                  label="Dirección"
+                  rules={[{ required: true }]}
+                >
+                  <Input
+                    placeholder="Introduce the Address"
+                    name="address"
+                    style={{ width: 200 }}
+                    allowClear
+                  />
+                </Form.Item>
+                <Form.Item
+                  name="Empleado"
+                  label="Empleado"
+                  rules={[{ required: true }]}
+                >
+                  <Select
+                    placeholder="Choose the Delivery Man"
+                    name="empleado"
+                    style={{ width: 200 }}
+                    allowClear
+                  >
+                    {this.state.employees.map(employee => (
+                      <Option value={employee.id} key={employee.id}>
+                        {employee.employee_cedula}
                       </Option>
                     ))}
                   </Select>
@@ -332,28 +374,81 @@ class BillDetailsCreateForm extends React.Component {
               </div>
             ) : (
               <div>
-                <h3>Pick Up</h3>
                 <Form.Item
-                  name="Sucursal"
-                  label="Sucursal"
+                  name="hasPickUp"
                   rules={[{ required: true }]}
+                  label="PickUp?"
+                  key={this.state.currBill.bill_pickup}
                 >
                   <Select
-                    placeholder="Choose the Store"
-                    name="sucursal"
+                    placeholder="Pick Up?"
+                    name="hasPickUp"
                     style={{ width: 200 }}
                     allowClear
+                    onChange={this.handlePickUp}
                   >
-                    {this.state.stores.map(store => (
-                      <Option value={store.id} key={store.id}>
-                        {store.store_name}
-                      </Option>
-                    ))}
+                    <Option value={false}>No</Option>
+                    <Option value={true}>Sí</Option>
                   </Select>
+                </Form.Item>
+
+                <Form.Item
+                  noStyle
+                  shouldUpdate={(prevValues, currentValues) =>
+                    prevValues.hasPickUp !== currentValues.hasPickUp
+                  }
+                >
+                  {({ getFieldValue }) => {
+                    return getFieldValue("hasPickup") == true ? (
+                      // ZONA DELIVERY
+                      <div>
+                        <h3>PickUp</h3>
+                        {/* DIRECCIÓN */}
+                        <Form.Item
+                          name="Sucursal"
+                          label="Sucursal"
+                          rules={[{ required: true }]}
+                        >
+                          <Select
+                            placeholder="Choose the Store"
+                            name="sucursal"
+                            style={{ width: 200 }}
+                            allowClear
+                          >
+                            {this.state.stores.map(store => (
+                              <Option value={store.id} key={store.id}>
+                                {store.store_name}
+                              </Option>
+                            ))}
+                          </Select>
+                        </Form.Item>
+                      </div>
+                    ) : (
+                      <div>
+                        <h3>HOLAAA</h3>
+                      </div>
+                    );
+                  }}
                 </Form.Item>
               </div>
             );
           }}
+        </Form.Item>
+
+        {/* HORA*/}
+        <Form.Item
+          name="time"
+          label="Hora de la entrega/búsqueda"
+          rules={[{ required: true }]}
+        >
+          <TimePicker name="timeime" style={{ width: 200 }} />
+        </Form.Item>
+        <br />
+        <br />
+        <Form.Item>
+          <Button type="primary" htmlType="submit" style={{ width: 200 }}>
+            Add
+          </Button>
         </Form.Item>
       </Form>
     );
