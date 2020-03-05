@@ -31,6 +31,9 @@ import ProviderTable from "./containers/TableViews/ProviderTableView";
 import ProviderPhoneTable from "./containers/TableViews/ProviderPhoneTableView";
 import Top5Table from "./containers/TableViews/Top5TableView";
 import Top5MenosTable from "./containers/TableViews/Top5MenosTableView";
+import Top5MiembrosTable from "./containers/TableViews/Top5MiembrosTableView";
+import ListaPerdidasTable from "./containers/TableViews/ListaPerdidasTableView";
+import TopSucursalTable from "./containers/TableViews/TopSucursalTableView";
 import TypeProductDetail from "./containers/TypeProductDetailView";
 import ProductAndTypeDetail from "./containers/ProductAndTypeDetailView";
 import ClientDetail from "./containers/DetailViews/ClientDetailView";
@@ -89,6 +92,9 @@ const BaseRouter = () => (
     <Route exact path="/providerphone/" component={ProviderPhoneTable} />
     <Route exact path="/top5/" component={Top5Table} />
     <Route exact path="/top5menos/" component={Top5MenosTable} />
+    <Route exact path="/top5miembros/" component={Top5MiembrosTable} />
+    <Route exact path="/listaperdidas/" component={ListaPerdidasTable} />
+    <Route exact path="/topsucursal/" component={TopSucursalTable} />
   </div>
 );
 

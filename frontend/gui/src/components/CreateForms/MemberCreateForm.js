@@ -144,25 +144,16 @@ class MemberCreateForm extends React.Component {
             <Option value={true}>Yes</Option>
             <Option value={false}>No</Option>
           </Select>
-
         </Form.Item>
         <br />
         <Form.Item>
-          <Button type="primary" htmlType="submit" onClick={refreshPage}>
+          <Button type="primary" htmlType="submit">
             Crear
           </Button>
         </Form.Item>
       </Form>
-
     );
   }
 }
 
-
-
 export default MemberCreateForm;
-
-
-  
-
-
