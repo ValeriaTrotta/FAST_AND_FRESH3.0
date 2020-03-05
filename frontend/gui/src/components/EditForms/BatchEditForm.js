@@ -1,18 +1,11 @@
 import React from "react";
-import {
-  Form,
-  Input,
-  Button,
-  Select,
-  InputNumber,
-  Radio,
-  DatePicker,
-  TimePicker
-} from "antd";
+import { Form, Button, Select, InputNumber, DatePicker } from "antd";
 import axios from "axios";
 
 const { Option } = Select;
-const { MonthPicker, RangePicker } = DatePicker;
+
+const { RangePicker } = DatePicker;
+
 const rangeConfig = {
   rules: [{ type: "array", required: true, message: "Please select time!" }]
 };
@@ -71,7 +64,7 @@ class BatchEditForm extends React.Component {
     });
   }
 
-  handleFormSubmit = (event, id) => {
+  handleFormSubmit = (event, batchId) => {
     // event.preventDefault();
     var moment = require("moment");
     const product_name = event.Nombre;
@@ -84,24 +77,25 @@ class BatchEditForm extends React.Component {
     const discount = event.Descuento;
     const price_points = 10 * parseInt(event.PriceD);
     const store = event.Sucursal;
+    const is_active = true
 
+    return axios.put(`http://127.0.0.1:8000/api/batch/${batchId}/`, {
 
-
-    return axios
-      .put("http://127.0.0.1:8000/api/batch/", {
-        product_name: product_name,
-        units: units,
-        elaboration_date: elaboration_date,
-        expiration_date: expiration_date,
-        price_dolars_u: price_dolars_u,
-        units_sold: units_sold,
-        units_lost: units_lost,
-        discount: discount,
-        price_points: price_points,
-        store: store
-      })
+      product_name: product_name,
+      units: units,
+      elaboration_date: elaboration_date,
+      expiration_date: expiration_date,
+      price_dolars_u: price_dolars_u,
+      units_sold: units_sold,
+      units_lost: units_lost,
+      discount: discount,
+      price_points: price_points,
+      store: store,
+      is_active: is_active
+    })
       .then(res => console.log(res))
       .catch(error => console.error(error));
+
   };
 
   render() {
@@ -116,12 +110,17 @@ class BatchEditForm extends React.Component {
         <Form.Item
           name="Nombre"
           label="Producto"
+          rules={[
+            {
+              required: true
+            }
+          ]}
           key={this.state.currBatch.product_name}
         >
           <Select
-            defaultValue={this.state.currBatch.product_name}
+            style={{ width: 250 }}
             name="nombre"
-            placeholder="Selecciona un Producto"
+            placeholder={this.state.currBatch.product_name}
           >
             {this.state.products.map(provs => (
               <Option value={provs.id} key={provs.product_name}>
@@ -134,11 +133,11 @@ class BatchEditForm extends React.Component {
         <Form.Item
           name="Unidades"
           label="Units"
-          rules={[{ type: "number", min: 0 }]}
+          rules={[{ required: true, type: "number", min: 0 }]}
         >
           <InputNumber
             placeholder={this.state.currBatch.units}
-            defaultValue={this.state.currBatch.units}
+
           />
         </Form.Item>
         <Form.Item name="Dates" label="RangePicker" {...rangeConfig}>
@@ -148,11 +147,11 @@ class BatchEditForm extends React.Component {
         <Form.Item
           name="PriceD"
           label="Price in dolars"
-          rules={[{ type: "number", min: 0 }]}
+          rules={[{ required: true, type: "number", min: 0 }]}
         >
           <InputNumber
             placeholder={this.state.currBatch.price_dolars_u}
-            defaultValue={this.state.currBatch.price_dolars_u}
+
           />
         </Form.Item>
 
@@ -160,22 +159,27 @@ class BatchEditForm extends React.Component {
           name="Descuento"
           label="Discount"
           rules={[{ required: true, type: "number", min: 0.0, max: 1 }]}
+
         >
           <InputNumber
             placeholder={this.state.currBatch.discount}
-            defaultValue={this.state.currBatch.discount}
+
           />
         </Form.Item>
         <Form.Item
           name="Sucursal"
           label="Store"
-          rules={[{}]}
+          rules={[
+            {
+              required: true
+            }
+          ]}
           key={this.state.currBatch.store}
         >
           <Select
-            defaultValue={this.state.currBatch.store}
             name="store"
             placeholder="Selecciona una Sucursal"
+
           >
             {this.state.stores.map(provs => (
               <Option value={provs.id} key={provs.store_name}>

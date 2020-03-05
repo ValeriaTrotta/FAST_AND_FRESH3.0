@@ -146,12 +146,9 @@ class PickUp (models.Model):
         max_length=15, choices=STATUS, blank=False, null=False)
     bill_id = models.ForeignKey(
         'Bill', on_delete=models.CASCADE, null=False, blank=False)
-<<<<<<< HEAD
-=======
     store = models.ForeignKey(
         'Store', on_delete=models.CASCADE, null=False, blank=False)
     is_active = models.BooleanField()
->>>>>>> veru2
 
 
 class Bill (models.Model):
