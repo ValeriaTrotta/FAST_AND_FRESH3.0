@@ -1,5 +1,5 @@
 import React from "react";
-import { Route } from "react-router-dom";
+import { Route, Redirect } from "react-router-dom";
 import ProductTable from "./containers/TableViews/ProductTableView";
 import ProductDetail from "./containers/ProductDetailView";
 import BatchTable from "./containers/TableViews/BatchTableView";
@@ -35,6 +35,7 @@ import Top5MiembrosTable from "./containers/TableViews/Top5MiembrosTableView";
 import ListaPerdidasTable from "./containers/TableViews/ListaPerdidasTableView";
 import TopSucursalTable from "./containers/TableViews/TopSucursalTableView";
 import ListaEspecialesTable from "./containers/TableViews/ListaEspecialesTableView";
+import VentasDiariasTable from "./containers/TableViews/VentasDiariasTableView";
 import TypeProductDetail from "./containers/TypeProductDetailView";
 import ProductAndTypeDetail from "./containers/ProductAndTypeDetailView";
 import ClientDetail from "./containers/DetailViews/ClientDetailView";
@@ -97,6 +98,11 @@ const BaseRouter = () => (
     <Route exact path="/listaperdidas/" component={ListaPerdidasTable} />
     <Route exact path="/topsucursal/" component={TopSucursalTable} />
     <Route exact path="/listaespeciales/" component={ListaEspecialesTable} />
+    <Route
+      exact
+      path="/ventasdiarias/${dia}/${mes}/${ano}/"
+      component={VentasDiariasTable}
+    />
   </div>
 );
 

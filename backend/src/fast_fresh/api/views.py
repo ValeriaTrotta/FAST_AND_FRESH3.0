@@ -484,3 +484,34 @@ def ventas_diarias(request, dia, mes, ano):
     }
 
     return JsonResponse(data)
+
+
+def dinero_caja_dia(request, dia, mes, ano):
+
+    # Un JSON se establece con {}
+
+    arreglo = []
+    cantidad = []
+
+    query = CashRegisterBills.objects.values(
+        'cash_register__employee_id__employee_name').annotate(
+        a=Sum('bill__bill_sub_total')).filter(
+            bill_id__bill_date__year=ano,
+            bill_id__bill_date__month=mes,
+            bill_id__bill_date__day=dia).order_by('-a')
+
+    for x in query:
+        arreglo.append(x['cash_register__employee_id__employee_name'])
+        cantidad.append(x['a'])
+
+    b = []
+
+    for x in range(len(arreglo)):
+        c = {'Cajero/a': arreglo[x], 'Dinero': cantidad[x]}
+        b.append(c)
+
+    data = {
+        'algo': b,
+    }
+
+    return JsonResponse(data)
