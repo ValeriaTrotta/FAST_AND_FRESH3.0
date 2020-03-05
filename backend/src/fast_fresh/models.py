@@ -7,7 +7,6 @@ class Product (models.Model):
     is_active = models.BooleanField()
     provider = models.ForeignKey(
         'Provider', on_delete=models.CASCADE, null=False, blank=False)
-    is_active = models.BooleanField()
 
     def __str__(self):
         return self.product_name
@@ -145,6 +144,8 @@ class PickUp (models.Model):
         max_length=15, choices=STATUS, blank=False, null=False)
     bill_id = models.ForeignKey(
         'Bill', on_delete=models.CASCADE, null=False, blank=False)
+    store = models.ForeignKey(
+        'Store', on_delete=models.CASCADE, null=False, blank=False)
     is_active = models.BooleanField()
 
 

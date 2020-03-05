@@ -24,7 +24,8 @@ class ClientEditForm extends React.Component {
 
   state = {
     zonas: [],
-    currCli: {}
+    currCli: {},
+    clients: []
   };
 
   componentDidMount() {
@@ -40,15 +41,23 @@ class ClientEditForm extends React.Component {
         zonas: res.data
       });
     });
+    axios.get("http://127.0.0.1:8000/api/clients/").then(res => {
+      this.setState({
+        clients: res.data
+      });
+    });
   }
 
   handleFormSubmit = (event, productId) => {
     let valida = true;
+    console.log(this.state.clients);
     this.state.clients.forEach(client => {
       console.log("entre");
       if (client.client_cedula == event.Cedula) {
         valida = false;
-        console.log("ENTREw");
+        if (client.id == this.state.client.id) {
+          valida = true;
+        }
       }
     });
     if (valida) {
@@ -87,66 +96,70 @@ class ClientEditForm extends React.Component {
         onFinish={event => this.handleFormSubmit(event, this.props.id)}
       >
         <Form.Item
+          rules={[{ required: true }]}
           name="Nombre"
           label="Nombre"
-          defaultValue={this.state.currCli.client_name}
+          key={this.state.currCli.client_name}
         >
-          <Input
-            name="name"
-            defaultValue={this.state.currCli.client_name}
-            placeholder={this.state.currCli.client_name}
-          />
+          <Input name="name" placeholder={this.state.currCli.client_name} />
         </Form.Item>
 
-        <Form.Item name="Apellido" label="Apellido">
+        <Form.Item
+          rules={[{ required: true }]}
+          name="Apellido"
+          label="Apellido"
+        >
           <Input
             name="lastname"
-            defaultValue={this.state.currCli.client_last_name}
             placeholder={this.state.currCli.client_last_name}
+            key={this.state.currCli.client_last_name}
           />
         </Form.Item>
 
         <Form.Item
+          rules={[{ required: true }]}
           name="Cedula"
           label="Cedula"
           rules={[{ type: "number", min: 1 }]}
+          key={this.state.currCli.client_cedula}
         >
           <InputNumber
             name="cedula"
-            defaultValue={this.state.currCli.client_cedula}
             placeholder={this.state.currCli.client_cedula}
           />
         </Form.Item>
 
         <Form.Item
+          rules={[{ required: true }]}
           name="Telefono"
           label="Telefono"
           rules={[{ type: "number", min: 4100000000, max: 4270000000 }]}
+          key={this.state.currCli.client_phone}
         >
           <InputNumber
             name="telefono"
-            defaultValue={this.state.currCli.client_phone}
             placeholder={this.state.currCli.client_phone}
           />
         </Form.Item>
 
-        <Form.Item name="Genero" label="Genero">
+        <Form.Item rules={[{ required: true }]} name="Genero" label="Genero">
           <Select
             name="genero"
             placeholder="Sexo"
-            defaultValue={this.state.currCli.client_gender}
+            key={this.state.currCli.client_gender}
           >
             <Option value="F">Femenino</Option>
             <Option value="M">Masculino</Option>
           </Select>
         </Form.Item>
 
-        <Form.Item name="Zona" label="Zona">
-          <Select
-            name="zona"
-            defaultValue={this.state.currCli.zona}
-            placeholder={this.state.currCli.zona}
-          >
+        <Form.Item
+          rules={[{ required: true }]}
+          name="Zona"
+          label="Zona"
+          key={this.state.currCli.zona}
+        >
+          <Select name="zona" placeholder={this.state.currCli.zona}>
             {this.state.zonas.map(provs => (
               <Option value={provs.id} key={provs.zona_name}>
                 {provs.zona_name}
@@ -155,7 +168,12 @@ class ClientEditForm extends React.Component {
           </Select>
         </Form.Item>
 
-        <Form.Item name="Active" label="Active">
+        <Form.Item
+          rules={[{ required: true }]}
+          name="Active"
+          label="Active"
+          key={this.state.currCli.is_active}
+        >
           <Select name="active" placeholder="Is it Active?">
             <Option value={true}>Yes</Option>
             <Option value={false}>No</Option>

@@ -112,11 +112,6 @@ class BatchEditForm extends React.Component {
         <Form.Item
           name="Nombre"
           label="Producto"
-          rules={[
-            {
-              required: true
-            }
-          ]}
           key={this.state.currBatch.product_name}
         >
           <Select
@@ -135,7 +130,7 @@ class BatchEditForm extends React.Component {
         <Form.Item
           name="Unidades"
           label="Units"
-          rules={[{ required: true, type: "number", min: 0 }]}
+          rules={[{ type: "number", min: 0 }]}
         >
           <InputNumber
             placeholder={this.state.currBatch.units}
@@ -149,7 +144,7 @@ class BatchEditForm extends React.Component {
         <Form.Item
           name="PriceD"
           label="Price in dolars"
-          rules={[{ required: true, type: "number", min: 0 }]}
+          rules={[{ type: "number", min: 0 }]}
         >
           <InputNumber
             placeholder={this.state.currBatch.price_dolars_u}
@@ -161,7 +156,6 @@ class BatchEditForm extends React.Component {
           name="Descuento"
           label="Discount"
           rules={[{ required: true, type: "number", min: 0.0, max: 1 }]}
-          defaultValue={this.state.currBatch.discount}
         >
           <InputNumber
             placeholder={this.state.currBatch.discount}
@@ -171,18 +165,13 @@ class BatchEditForm extends React.Component {
         <Form.Item
           name="Sucursal"
           label="Store"
-          rules={[
-            {
-              required: true
-            }
-          ]}
+          rules={[{}]}
           key={this.state.currBatch.store}
         >
           <Select
             defaultValue={this.state.currBatch.store}
             name="store"
             placeholder="Selecciona una Sucursal"
-            allowClear
           >
             {this.state.stores.map(provs => (
               <Option value={provs.id} key={provs.store_name}>
