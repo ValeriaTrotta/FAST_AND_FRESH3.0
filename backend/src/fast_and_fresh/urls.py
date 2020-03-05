@@ -23,8 +23,8 @@ urlpatterns = [
     path('lista_productos_mas_perdidas/', lista_productos_mas_perdidas),
     path('sucursal_mas_ventas/', sucursal_mas_ventas),
     path('productos_especiales/', productos_especiales),
-    path('ventas_diarias/<int:dia>/<int:mes>/<int:ano>/', ventas_diarias),
-    path('dinero_caja_dia/<int:dia>/<int:mes>/<int:ano>/', dinero_caja_dia),
-    path('dinero_intervalo_dias/<int:dia1>/<int:mes1>/<int:ano1>/<int:dia2>/<int:mes2>/<int:ano2>/',
+    path('ventas_diarias/<int:dia>-<int:mes>-<int:ano>/', ventas_diarias),
+    path('dinero_caja_dia/<int:dia>-<int:mes>-<int:ano>/', dinero_caja_dia),
+    path('dinero_intervalo_dias/<int:dia1>-<int:mes1>-<int:ano1>/<int:dia2>-<int:mes2>-<int:ano2>/',
          dinero_intervalo_dias),
 ]

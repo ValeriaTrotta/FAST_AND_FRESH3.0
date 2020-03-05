@@ -8,7 +8,9 @@ class VentasDiariasTable extends React.Component {
   };
 
   componentDidMount() {
-    axios.get("http://127.0.0.1:8000/ventas_diarias/").then(res => {
+    const start = this.props.match.params.start;
+    console.log(start);
+    axios.get(`http://127.0.0.1:8000/ventas_diarias/${start}`).then(res => {
       this.setState({
         tops: res.data.algo
       });

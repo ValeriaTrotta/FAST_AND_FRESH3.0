@@ -1,5 +1,7 @@
 import React from "react";
-import { Layout, Menu, Breadcrumb } from "antd";
+
+import { Link } from "react-router-dom";
+import { Layout, Menu } from "antd";
 import {
   UserOutlined,
   LaptopOutlined,
@@ -20,69 +22,71 @@ const CustomLayout = props => {
           defaultSelectedKeys={["2"]}
           style={{ lineHeight: "64px" }}
         >
-          <Menu.Item key="1">nav 1</Menu.Item>
-          <Menu.Item key="2">nav 2</Menu.Item>
-          <Menu.Item key="3">nav 3</Menu.Item>
+          <Menu.Item key="37">Fast and Fresh</Menu.Item>
         </Menu>
       </Header>
       <Content style={{ padding: "0 50px" }}>
-        <Breadcrumb style={{ margin: "16px 0" }}>
-          <Breadcrumb.Item>Home</Breadcrumb.Item>
-          <Breadcrumb.Item>List</Breadcrumb.Item>
-          <Breadcrumb.Item>App</Breadcrumb.Item>
-        </Breadcrumb>
         <Layout
           className="site-layout-background"
           style={{ padding: "24px 0" }}
         >
           <Sider className="site-layout-background" width={200}>
-            <Menu
-              mode="inline"
-              defaultSelectedKeys={["1"]}
-              defaultOpenKeys={["sub1"]}
-              style={{ height: "100%" }}
-            >
+            <Menu mode="inline" style={{ height: "100%" }}>
               <SubMenu
                 key="sub1"
                 title={
                   <span>
                     <UserOutlined />
-                    subnav 1
+                    Tablas
                   </span>
                 }
               >
-                <Menu.Item key="1">Productos</Menu.Item>
+                <Menu.Item onClick={"/product"}>Products</Menu.Item>
                 <Menu.Item key="2">Batches</Menu.Item>
-                <Menu.Item key="3">option3</Menu.Item>
-                <Menu.Item key="4">option4</Menu.Item>
+                <Menu.Item key="3">Type of Products</Menu.Item>
+                <Menu.Item key="4">Product Types</Menu.Item>
+                <Menu.Item key="5">Clients</Menu.Item>
+                <Menu.Item key="6">Members</Menu.Item>
+                <Menu.Item key="7">Zones</Menu.Item>
+                <Menu.Item key="8">Cities</Menu.Item>
+                <Menu.Item key="9">States</Menu.Item>
+                <Menu.Item key="10">Stores</Menu.Item>
+                <Menu.Item key="11">Store Bosses</Menu.Item>
+                <Menu.Item key="12">Deliveries</Menu.Item>
+                <Menu.Item key="13">Pick Ups</Menu.Item>
+                <Menu.Item key="14">Bills</Menu.Item>
+                <Menu.Item key="15">Bill Details</Menu.Item>
+                <Menu.Item key="16">Cash Registers</Menu.Item>
+                <Menu.Item key="17">Cash Registers Bills</Menu.Item>
+                <Menu.Item key="18">Payments</Menu.Item>
+                <Menu.Item key="19">Payment Methods</Menu.Item>
+                <Menu.Item key="20">Currencies</Menu.Item>
+                <Menu.Item key="21">Exchange Rates</Menu.Item>
+                <Menu.Item key="22">Employees</Menu.Item>
+                <Menu.Item key="23">Employee Stores</Menu.Item>
+                <Menu.Item key="24">Jobs</Menu.Item>
+                <Menu.Item key="25">IVAs</Menu.Item>
+                <Menu.Item key="26">Providers</Menu.Item>
+                <Menu.Item key="27">Provider Phones</Menu.Item>
               </SubMenu>
               <SubMenu
                 key="sub2"
                 title={
                   <span>
                     <LaptopOutlined />
-                    subnav 2
+                    Queries
                   </span>
                 }
               >
-                <Menu.Item key="5">option5</Menu.Item>
-                <Menu.Item key="6">option6</Menu.Item>
-                <Menu.Item key="7">option7</Menu.Item>
-                <Menu.Item key="8">option8</Menu.Item>
-              </SubMenu>
-              <SubMenu
-                key="sub3"
-                title={
-                  <span>
-                    <NotificationOutlined />
-                    subnav 3
-                  </span>
-                }
-              >
-                <Menu.Item key="9">option9</Menu.Item>
-                <Menu.Item key="10">option10</Menu.Item>
-                <Menu.Item key="11">option11</Menu.Item>
-                <Menu.Item key="12">option12</Menu.Item>
+                <Menu.Item key="28">Top 5 Products</Menu.Item>
+                <Menu.Item key="29">Bottom 5 Products</Menu.Item>
+                <Menu.Item key="30">Top 5 Special Products</Menu.Item>
+                <Menu.Item key="31">Lost Products</Menu.Item>
+                <Menu.Item key="32">Top Store</Menu.Item>
+                <Menu.Item key="33">Special Products</Menu.Item>
+                <Menu.Item key="34">Products Sales per Day</Menu.Item>
+                <Menu.Item key="35">Cashiers Money per Day</Menu.Item>
+                <Menu.Item key="36">Cashier Money in Period of Time</Menu.Item>
               </SubMenu>
             </Menu>
           </Sider>

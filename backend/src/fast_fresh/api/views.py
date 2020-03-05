@@ -507,7 +507,7 @@ def dinero_caja_dia(request, dia, mes, ano):
     b = []
 
     for x in range(len(arreglo)):
-        c = {'Cajero/a': arreglo[x], 'Dinero': cantidad[x]}
+        c = {'employee': arreglo[x], 'dinero': cantidad[x]}
         b.append(c)
 
     data = {
@@ -539,7 +539,7 @@ def dinero_intervalo_dias(request, dia1, mes1, ano1, dia2, mes2, ano2):
     b = []
 
     for x in range(len(arreglo)):
-        c = {'Cajero/a': arreglo[x], 'Dinero': cantidad[x]}
+        c = {'employee': arreglo[x], 'dinero': cantidad[x]}
         b.append(c)
 
     data = {

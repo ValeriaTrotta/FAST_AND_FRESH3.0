@@ -36,12 +36,15 @@ import ListaPerdidasTable from "./containers/TableViews/ListaPerdidasTableView";
 import TopSucursalTable from "./containers/TableViews/TopSucursalTableView";
 import ListaEspecialesTable from "./containers/TableViews/ListaEspecialesTableView";
 import VentasDiariasTable from "./containers/TableViews/VentasDiariasTableView";
+import DineroCajaTable from "./containers/TableViews/DineroCajaTableView";
+import DineroIntervaloTable from "./containers/TableViews/DineroIntervaloTableView";
 import TypeProductDetail from "./containers/TypeProductDetailView";
 import ProductAndTypeDetail from "./containers/ProductAndTypeDetailView";
 import ClientDetail from "./containers/DetailViews/ClientDetailView";
 import MemberDetail from "./containers/DetailViews/MemberDetailView";
 import CashRegisterDetail from "./containers/DetailViews/CashRegisterDetailView";
 import EmployeeDetail from "./containers/DetailViews/EmployeeDetailView";
+import HomeView from "./containers/HomeView";
 
 const BaseRouter = () => (
   <div>
@@ -98,11 +101,14 @@ const BaseRouter = () => (
     <Route exact path="/listaperdidas/" component={ListaPerdidasTable} />
     <Route exact path="/topsucursal/" component={TopSucursalTable} />
     <Route exact path="/listaespeciales/" component={ListaEspecialesTable} />
+    <Route exact path="/ventasdiarias/:start" component={VentasDiariasTable} />
+    <Route exact path="/dinerocaja/:start" component={DineroCajaTable} />
     <Route
       exact
-      path="/ventasdiarias/${dia}/${mes}/${ano}/"
-      component={VentasDiariasTable}
+      path="/dinerointervalo/:start/:end/"
+      component={DineroIntervaloTable}
     />
+    <Route exact path="/" component={HomeView} />
   </div>
 );
 
