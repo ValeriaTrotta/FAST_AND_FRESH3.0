@@ -86,6 +86,7 @@ class BatchEditForm extends React.Component {
     const store = event.Sucursal;
 
 
+
     return axios
       .put("http://127.0.0.1:8000/api/batch/", {
         product_name: product_name,

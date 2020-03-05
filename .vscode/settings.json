@@ -1,5 +1,5 @@
 {
-  "python.pythonPath": "/Library/Frameworks/Python.framework/Versions/3.8/bin/python3",
+  "python.pythonPath": "C:\\Users\\Luis Arturo\\AppData\\Local\\Programs\\Python\\Python38\\python.exe",
   "python.linting.enabled": true,
   "python.linting.pylintEnabled": true,
   "team.showWelcomeMessage": false,
