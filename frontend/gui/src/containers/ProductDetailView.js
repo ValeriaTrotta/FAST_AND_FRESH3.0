@@ -8,7 +8,7 @@ class ProductDetail extends React.Component {
   state = {
     product: {},
     batches: [],
-    provider: ""
+    provider: " "
   };
 
   componentDidMount() {

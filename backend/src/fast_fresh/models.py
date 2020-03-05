@@ -197,7 +197,7 @@ class Payment(models.Model):
 
 class PaymentMethod (models.Model):
     payment_method = models.CharField(max_length=20)
-    is_active = models.BooleanField
+    is_active = models.BooleanField()
 
 
 class Currency (models.Model):
@@ -213,7 +213,7 @@ class ExchangeRate (models.Model):
         'Currency', on_delete=models.CASCADE, null=False, blank=False)
     exchange_rate = models.FloatField()
     exchange_rate_date = models.DateField(auto_now_add=True)
-    is_active = models.BooleanField
+    is_active = models.BooleanField()
 
 
 class Employee (models.Model):
@@ -241,7 +241,7 @@ class EmployeeStore(models.Model):
         'Store', on_delete=models.CASCADE, null=False, blank=False)
     employee = models.ForeignKey(
         'Employee', on_delete=models.CASCADE, null=False, blank=False)
-    hired_date = models.DateField(editable=False)
+    hired_date = models.DateField()
     is_active = models.BooleanField()
 
 

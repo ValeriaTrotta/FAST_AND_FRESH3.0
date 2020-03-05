@@ -9,32 +9,47 @@ import ProductAndTypeTable from "./containers/TableViews/ProductAndTypeTableView
 import ClientTable from "./containers/TableViews/ClientTableView";
 import MemberTable from "./containers/TableViews/MemberTableView";
 import ZonaTable from "./containers/TableViews/ZonaTableView";
+import ZonaDetail from "./containers/DetailViews/ZonaDetailView";
 import CityTable from "./containers/TableViews/CityTableView";
+import CityDetail from "./containers/DetailViews/CityDetailView";
 import StateTable from "./containers/TableViews/StateTableView";
+import StateDetail from "./containers/DetailViews/StateDetailView";
 import StoreTable from "./containers/TableViews/StoreTableView";
+import StoreDetail from "./containers/DetailViews/StoreDetailView";
 import StoreBossTable from "./containers/TableViews/StoreBossTableView";
+import StoreBossDetail from "./containers/DetailViews/StoreBossDetailView";
 import DeliveryTable from "./containers/TableViews/DeliveryTableView";
+import DeliveryDetail from "./containers/DetailViews/DeliveryDetailView";
 import PickUpTable from "./containers/TableViews/PickUpTableView";
 import BillTable from "./containers/TableViews/BillTableView";
 import BillDetailTable from "./containers/TableViews/BillDetailTableView";
 import CashRegisterTable from "./containers/TableViews/CashRegisterTableView";
 import CashRegisterBillTable from "./containers/TableViews/CashRegisterBillTableView";
+import CashRegisterBillDetail from "./containers/DetailViews/CashRegisterBillDetailView";
 import PaymentTable from "./containers/TableViews/PaymentTableView";
 import PaymentMethodTable from "./containers/TableViews/PaymentMethodTableView";
 import CurrencyTable from "./containers/TableViews/CurrencyTableView";
+import CurrencyDetail from "./containers/DetailViews/CurrencyDetailView"
 import ExchangeRateTable from "./containers/TableViews/ExchangeRateTableView";
+import ExchangeRateDetail from "./containers/DetailViews/ExchangeRateDetailView";
 import EmployeeTable from "./containers/TableViews/EmployeeTableView";
+import EmployeeDetail from "./containers/DetailViews/EmployeeDetailView";
 import EmployeeStoreTable from "./containers/TableViews/EmployeeStoreTableView";
+import EmployeeStoreDetail from "./containers/DetailViews/EmployeeStoreDetailView";
 import JobTable from "./containers/TableViews/JobTableView";
+import JobDetail from "./containers/DetailViews/JobDetailView";
 import IVATable from "./containers/TableViews/IVATableView";
+import IVADetail from "./containers/DetailViews/IVADetailView";
 import ProviderTable from "./containers/TableViews/ProviderTableView";
+import ProviderDetail from "./containers/DetailViews/ProviderDetailView";
 import ProviderPhoneTable from "./containers/TableViews/ProviderPhoneTableView";
+import ProviderPhoneDetail from "./containers/DetailViews/ProviderPhoneDetailView";
 import TypeProductDetail from "./containers/TypeProductDetailView";
 import ProductAndTypeDetail from "./containers/ProductAndTypeDetailView";
 import ClientDetail from "./containers/DetailViews/ClientDetailView";
 import MemberDetail from "./containers/DetailViews/MemberDetailView";
 import CashRegisterDetail from "./containers/DetailViews/CashRegisterDetailView";
-import EmployeeDetail from "./containers/DetailViews/EmployeeDetailView";
+import PickUpDetail from "./containers/DetailViews/PickUpDetailView"
 
 const BaseRouter = () => (
   <div>
@@ -59,12 +74,19 @@ const BaseRouter = () => (
     <Route exact path="/member/" component={MemberTable} />
     <Route exact path="/member/:memberId" component={MemberDetail} />
     <Route exact path="/zona/" component={ZonaTable} />
+    <Route exact path="/zona/:zonaId" component={ZonaDetail} />
     <Route exact path="/city/" component={CityTable} />
+    <Route exact path="/city/:cityId" component={CityDetail} />
     <Route exact path="/state/" component={StateTable} />
+    <Route exact path="/state/:stateId" component={StateDetail} />
     <Route exact path="/store/" component={StoreTable} />
+    <Route exact path="/store/:storeId" component={StoreDetail} />
     <Route exact path="/storeboss/" component={StoreBossTable} />
+    <Route exact path="/storeboss/:storebossId" component={StoreBossDetail} />
     <Route exact path="/delivery/" component={DeliveryTable} />
+    <Route exact path="/delivery/:deliveryId" component={DeliveryDetail} />
     <Route exact path="/pickup/" component={PickUpTable} />
+    <Route exact path="/pickup/:pickupId" component={PickUpDetail} />
     <Route exact path="/bill/" component={BillTable} />
     <Route exact path="/billdetail/" component={BillDetailTable} />
     <Route exact path="/cashregister/" component={CashRegisterTable} />
@@ -74,17 +96,25 @@ const BaseRouter = () => (
       component={CashRegisterDetail}
     />
     <Route exact path="/cashregisterbill/" component={CashRegisterBillTable} />
+    <Route exact path="/cashregisterbill/:cashregisterbillId" component={CashRegisterBillDetail} />
     <Route exact path="/payment/" component={PaymentTable} />
     <Route exact path="/paymentmethod/" component={PaymentMethodTable} />
     <Route exact path="/currency/" component={CurrencyTable} />
+    <Route exact path="/currency/:currencyId" component={CurrencyDetail} />
     <Route exact path="/exchangerate/" component={ExchangeRateTable} />
+    <Route exact path="/exchangerate/:exchangerateId" component={ExchangeRateDetail} />
     <Route exact path="/employee/" component={EmployeeTable} />
     <Route exact path="/employee/:employeeId" component={EmployeeDetail} />
     <Route exact path="/employeestore/" component={EmployeeStoreTable} />
+    <Route exact path="/employeestore/:employeestoreId" component={EmployeeStoreDetail} />
     <Route exact path="/job/" component={JobTable} />
+    <Route exact path="/job/:jobId" component={JobDetail} />
     <Route exact path="/iva/" component={IVATable} />
+    <Route exact path="/iva/:ivaId" component={IVADetail} />
     <Route exact path="/provider/" component={ProviderTable} />
+    <Route exact path="/provider/:providerId" component={ProviderDetail} />
     <Route exact path="/providerphone/" component={ProviderPhoneTable} />
+    <Route exact path="/providerphone/:providerphoneId" component={ProviderPhoneDetail} />
   </div>
 );
 

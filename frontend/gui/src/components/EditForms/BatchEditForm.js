@@ -85,6 +85,7 @@ class BatchEditForm extends React.Component {
     const price_points = 10 * parseInt(event.PriceD);
     const store = event.Sucursal;
 
+
     return axios
       .put("http://127.0.0.1:8000/api/batch/", {
         product_name: product_name,
@@ -103,7 +104,9 @@ class BatchEditForm extends React.Component {
   };
 
   render() {
+
     return (
+
       <Form
         ref={this.formRef}
         name="control-ref"

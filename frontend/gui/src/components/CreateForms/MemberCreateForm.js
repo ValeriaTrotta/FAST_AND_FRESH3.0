@@ -148,12 +148,11 @@ class MemberCreateForm extends React.Component {
         </Form.Item>
         <br />
         <Form.Item>
-          <Button type="primary" htmlType="submit" onClick={refreshPage}>
+          <Button type="primary" htmlType="submit">
             Crear
           </Button>
         </Form.Item>
       </Form>
-
     );
   }
 }
