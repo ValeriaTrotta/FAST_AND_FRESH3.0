@@ -144,7 +144,6 @@ class MemberCreateForm extends React.Component {
             <Option value={true}>Yes</Option>
             <Option value={false}>No</Option>
           </Select>
-
         </Form.Item>
         <br />
         <Form.Item>
@@ -157,11 +156,4 @@ class MemberCreateForm extends React.Component {
   }
 }
 
-
-
 export default MemberCreateForm;
-
-
-  
-
-

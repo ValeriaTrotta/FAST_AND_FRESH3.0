@@ -1,5 +1,5 @@
 import React from "react";
-import { Route } from "react-router-dom";
+import { Route, Redirect } from "react-router-dom";
 import ProductTable from "./containers/TableViews/ProductTableView";
 import ProductDetail from "./containers/ProductDetailView";
 import BatchTable from "./containers/TableViews/BatchTableView";
@@ -44,12 +44,23 @@ import ProviderTable from "./containers/TableViews/ProviderTableView";
 import ProviderDetail from "./containers/DetailViews/ProviderDetailView";
 import ProviderPhoneTable from "./containers/TableViews/ProviderPhoneTableView";
 import ProviderPhoneDetail from "./containers/DetailViews/ProviderPhoneDetailView";
+import Top5Table from "./containers/TableViews/Top5TableView";
+import Top5MenosTable from "./containers/TableViews/Top5MenosTableView";
+import Top5MiembrosTable from "./containers/TableViews/Top5MiembrosTableView";
+import ListaPerdidasTable from "./containers/TableViews/ListaPerdidasTableView";
+import TopSucursalTable from "./containers/TableViews/TopSucursalTableView";
+import ListaEspecialesTable from "./containers/TableViews/ListaEspecialesTableView";
+import VentasDiariasTable from "./containers/TableViews/VentasDiariasTableView";
+import DineroCajaTable from "./containers/TableViews/DineroCajaTableView";
+import DineroIntervaloTable from "./containers/TableViews/DineroIntervaloTableView";
 import TypeProductDetail from "./containers/TypeProductDetailView";
 import ProductAndTypeDetail from "./containers/ProductAndTypeDetailView";
 import ClientDetail from "./containers/DetailViews/ClientDetailView";
 import MemberDetail from "./containers/DetailViews/MemberDetailView";
 import CashRegisterDetail from "./containers/DetailViews/CashRegisterDetailView";
 import PickUpDetail from "./containers/DetailViews/PickUpDetailView"
+import EmployeeDetail from "./containers/DetailViews/EmployeeDetailView";
+import HomeView from "./containers/HomeView";
 
 const BaseRouter = () => (
   <div>
@@ -115,6 +126,20 @@ const BaseRouter = () => (
     <Route exact path="/provider/:providerId" component={ProviderDetail} />
     <Route exact path="/providerphone/" component={ProviderPhoneTable} />
     <Route exact path="/providerphone/:providerphoneId" component={ProviderPhoneDetail} />
+    <Route exact path="/top5/" component={Top5Table} />
+    <Route exact path="/top5menos/" component={Top5MenosTable} />
+    <Route exact path="/top5miembros/" component={Top5MiembrosTable} />
+    <Route exact path="/listaperdidas/" component={ListaPerdidasTable} />
+    <Route exact path="/topsucursal/" component={TopSucursalTable} />
+    <Route exact path="/listaespeciales/" component={ListaEspecialesTable} />
+    <Route exact path="/ventasdiarias/:start" component={VentasDiariasTable} />
+    <Route exact path="/dinerocaja/:start" component={DineroCajaTable} />
+    <Route
+      exact
+      path="/dinerointervalo/:start/:end/"
+      component={DineroIntervaloTable}
+    />
+    <Route exact path="/" component={HomeView} />
   </div>
 );
 

@@ -2,6 +2,7 @@ import React from "react";
 import Clients from "../../components/Entidades/Client";
 import ClientCreateForm from "../../components/CreateForms/ClientCreateForm";
 import axios from "axios";
+import DateForm from "../DateForm";
 
 class ClientTable extends React.Component {
   state = {

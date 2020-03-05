@@ -83,8 +83,8 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'FAST_AND_FRESH3',
         'USER': 'root',
-        #'PASSWORD': '211Ce496',
-        'PASSWORD': '123456',
+        'PASSWORD': '211Ce496',
+        # 'PASSWORD': '123456',
         'HOST': 'localhost',
         'PORT': '3306',
     }
