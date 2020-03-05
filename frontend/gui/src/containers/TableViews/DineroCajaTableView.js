@@ -14,7 +14,7 @@ class DineroCajaTable extends React.Component {
       this.setState({
         cajaventas: res.data.algo
       });
-      console.log(this.state.cajaventas);
+      console.log(res.data.algo);
     });
   }
   render() {

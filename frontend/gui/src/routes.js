@@ -58,8 +58,7 @@ import ProductAndTypeDetail from "./containers/ProductAndTypeDetailView";
 import ClientDetail from "./containers/DetailViews/ClientDetailView";
 import MemberDetail from "./containers/DetailViews/MemberDetailView";
 import CashRegisterDetail from "./containers/DetailViews/CashRegisterDetailView";
-import PickUpDetail from "./containers/DetailViews/PickUpDetailView"
-import EmployeeDetail from "./containers/DetailViews/EmployeeDetailView";
+import PickUpDetail from "./containers/DetailViews/PickUpDetailView";
 import HomeView from "./containers/HomeView";
 
 const BaseRouter = () => (

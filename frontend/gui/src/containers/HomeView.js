@@ -15,15 +15,15 @@ class HomeView extends React.Component {
   render() {
     return (
       <div>
-        <Card title="Date">
+        <Card title="Buscar las ventas de productos de un día">
           <br />
           <DateForm />
         </Card>
-        <Card title="Dinero Caja Dia">
+        <Card title="Buscar dinero recaudado por caja en un día">
           <br />
           <DateForm2 />
         </Card>
-        <Card title="Dinero Intervalo">
+        <Card title="Buscar dinero recaudado en un intervalo de días">
           <br />
           <DateForm3 />
         </Card>
