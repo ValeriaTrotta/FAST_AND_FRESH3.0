@@ -35,6 +35,7 @@ import ClientDetail from "./containers/DetailViews/ClientDetailView";
 import MemberDetail from "./containers/DetailViews/MemberDetailView";
 import CashRegisterDetail from "./containers/DetailViews/CashRegisterDetailView";
 import EmployeeDetail from "./containers/DetailViews/EmployeeDetailView";
+import BillDetail from "./containers/DetailViews/BillDetailView";
 
 const BaseRouter = () => (
   <div>
@@ -66,6 +67,7 @@ const BaseRouter = () => (
     <Route exact path="/delivery/" component={DeliveryTable} />
     <Route exact path="/pickup/" component={PickUpTable} />
     <Route exact path="/bill/" component={BillTable} />
+    <Route exact path="/bill/:billId" component={BillDetail} />
     <Route exact path="/billdetail/" component={BillDetailTable} />
     <Route exact path="/cashregister/" component={CashRegisterTable} />
     <Route
