@@ -1,6 +1,32 @@
 from rest_framework.routers import DefaultRouter
 from django.urls import path
-from .views import ProductViewSet, BatchViewSet, Type_Of_ProductViewSet, Product_TypeViewSet, ClientViewSet, MemberViewSet, ZonaViewSet, CityViewSet, StateViewSet, StoreViewSet, StoreBossViewSet, DeliveryViewSet, PickUpViewSet, BillViewSet, BillDetailsViewSet, CashRegisterViewSet, CashRegisterBillsViewSet, PaymentViewSet, PaymentMethodViewSet, CurrencyViewSet, ExchangeRateViewSet, EmployeeViewSet, EmployeeStoreViewSet, JobViewSet, IVAViewSet, ProviderViewSet, ProviderPhoneViewSet
+from .views import (ProductViewSet,
+                    BatchViewSet,
+                    Type_Of_ProductViewSet,
+                    Product_TypeViewSet,
+                    ClientViewSet,
+                    MemberViewSet,
+                    ZonaViewSet,
+                    CityViewSet,
+                    StateViewSet,
+                    StoreViewSet,
+                    StoreBossViewSet,
+                    DeliveryViewSet,
+                    PickUpViewSet,
+                    BillViewSet,
+                    BillDetailsViewSet,
+                    CashRegisterViewSet,
+                    CashRegisterBillsViewSet,
+                    PaymentViewSet,
+                    PaymentMethodViewSet,
+                    CurrencyViewSet,
+                    ExchangeRateViewSet,
+                    EmployeeViewSet,
+                    EmployeeStoreViewSet,
+                    JobViewSet,
+                    IVAViewSet,
+                    ProviderViewSet,
+                    ProviderPhoneViewSet,)
 
 router = DefaultRouter()
 router.register(r'product', ProductViewSet, basename='product')
@@ -35,4 +61,5 @@ router.register(r'iva', IVAViewSet, basename='iva')
 router.register(r'provider', ProviderViewSet, basename='provider')
 router.register(r'providerphone', ProviderPhoneViewSet,
                 basename='providerphone')
+
 urlpatterns = router.urls

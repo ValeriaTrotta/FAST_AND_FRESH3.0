@@ -17,6 +17,7 @@ const { Option } = Select;
 function onChange(value) {
   console.log("changed", value);
 }
+
 const config = {
   rules: [{ type: "object", required: true, message: "Please select time!" }]
 };
@@ -70,7 +71,7 @@ class MemberCreateForm extends React.Component {
         member_birth_date: member_birth_date
       })
       .then(res => console.log(res))
-      .catch(error => console.err(error));
+      .catch(error => console.error(error));
   };
 
   render() {
@@ -144,7 +145,6 @@ class MemberCreateForm extends React.Component {
             <Option value={false}>No</Option>
           </Select>
         </Form.Item>
-
         <br />
         <Form.Item>
           <Button type="primary" htmlType="submit">

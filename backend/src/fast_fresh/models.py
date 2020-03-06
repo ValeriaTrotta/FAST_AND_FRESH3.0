@@ -1,4 +1,7 @@
+
 from django.db import models
+
+# VAN A HABER MERGE CONFLICTS. ACEPTAR LOS DE "tutu"
 
 
 class Product (models.Model):
@@ -49,19 +52,18 @@ class Client (models.Model):
     client_name = models.CharField(max_length=100)
     client_last_name = models.CharField(max_length=100)
     client_cedula = models.IntegerField(null=True, unique=True)
-    client_phone = models.CharField(max_length=11)
+    client_phone = models.IntegerField(null=True)
+    is_active = models.BooleanField()
     client_gender = models.CharField(
         max_length=1, choices=GENDER, blank=False, null=False)
     zona = models.ForeignKey(
         'Zona', on_delete=models.CASCADE, null=False, blank=False)
-    is_active = models.BooleanField()
 
     def __str__(self):
         return self.client_name
 
 
 class Member (models.Model):
-
     member_points = models.IntegerField(default=0)
     member_email = models.EmailField()
     member_start_date = models.DateField(auto_now_add=True)
@@ -191,9 +193,9 @@ class Payment(models.Model):
     payment_method = models.ForeignKey(
         'PaymentMethod', on_delete=models.CASCADE, null=False, blank=False)
     payment_method_instrument = models.CharField(max_length=20, null=True)
+    is_active = models.BooleanField()
     bill = models.ForeignKey(
         'Bill', on_delete=models.CASCADE, null=False, blank=False)
-    is_active = models.BooleanField()
 
 
 class PaymentMethod (models.Model):
@@ -228,6 +230,7 @@ class Employee (models.Model):
     employee_phone = models.IntegerField()
     employee_job = models.ForeignKey(
         'Job', on_delete=models.CASCADE, null=False, blank=False)
+    is_active = models.BooleanField()
     salary_bonus = models.IntegerField()
     employee_email = models.EmailField()
     is_active = models.BooleanField()
@@ -241,7 +244,7 @@ class EmployeeStore(models.Model):
         'Store', on_delete=models.CASCADE, null=False, blank=False)
     employee = models.ForeignKey(
         'Employee', on_delete=models.CASCADE, null=False, blank=False)
-    hired_date = models.DateField(editable=False)
+    hired_date = models.DateField()
     is_active = models.BooleanField()
 
 

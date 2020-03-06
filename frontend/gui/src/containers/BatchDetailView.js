@@ -53,6 +53,8 @@ class BatchDetail extends React.Component {
           <h3>Discount: {this.state.batch.discount}</h3>
           <h3>Store: {this.state.batch.store}</h3>
         </Card>
+        <br />
+        <h3>Edit Batch</h3>
         <BatchEditForm id={this.props.match.params.batchId} />
       </div>
     );

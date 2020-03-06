@@ -1,12 +1,9 @@
 import React from "react";
-import { Form, Input, Button, Select, InputNumber, Radio } from "antd";
+import { Form, Input, Button, Select } from "antd";
 import axios from "axios";
 
 const { Option } = Select;
 
-function onChange(value) {
-  console.log("changed", value);
-}
 function onSearch(val) {
   console.log("search:", val);
 }
@@ -59,7 +56,7 @@ class ProductEditForm extends React.Component {
         is_special: is_special
       })
       .then(res => console.log(res))
-      .catch(error => console.err(error));
+      .catch(error => console.error(error));
   };
 
   render() {
@@ -74,6 +71,11 @@ class ProductEditForm extends React.Component {
             defaultValue={this.state.currProd.product_name}
             name="name"
             placeholder={this.state.currProd.product_name}
+            rules={[
+              {
+                required: true
+              }
+            ]}
           />
         </Form.Item>
 
@@ -87,6 +89,7 @@ class ProductEditForm extends React.Component {
           ]}
         >
           <Select
+            style={{ width: 150 }}
             showSearch
             name="provider"
             defaultValue={this.state.currProd.provider}

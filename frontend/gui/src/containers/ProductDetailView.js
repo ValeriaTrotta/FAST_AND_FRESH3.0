@@ -8,7 +8,7 @@ class ProductDetail extends React.Component {
   state = {
     product: {},
     batches: [],
-    provider: ""
+    provider: " "
   };
 
   componentDidMount() {
@@ -62,6 +62,7 @@ class ProductDetail extends React.Component {
           <h3>Provider: {this.state.provider.provider_name}</h3>
           <br />
         </Card>
+        <br />
         <h3>Edit Product</h3>
         <ProductEditForm id={this.props.match.params.productId} />
         <ProductAndBatches data={lista} />
