@@ -1,6 +1,6 @@
 import React from "react";
 import Bills from "../../components/Entidades/Bill";
-import ProductCreateForm from "../../components/CreateForms/ProductCreateForm";
+import BillCreateForm from "../../components/CreateForms/BillCreateForm";
 import axios from "axios";
 
 class BillTable extends React.Component {
@@ -20,7 +20,7 @@ class BillTable extends React.Component {
   render() {
     const lista = [];
     this.state.bills.map(bill => {
-      if (bill.is_active) {
+      if (bill.is_active && bill.bill_delivery) {
         const item = {
           id: bill.id,
           bill_sub_total: bill.bill_sub_total,
@@ -28,13 +28,13 @@ class BillTable extends React.Component {
           bill_date: bill.bill_date,
           bill_time: bill.bill_time,
           bill_earned_points: bill.bill_earned_points,
-          bill_delivery: bill.bill_delivery,
-          bill_pickup: bill.bill_pickup,
+          bill_delivery: "Si",
+          bill_pickup: "No",
           is_active: "Activo"
         };
         lista.push(item);
       }
-      if (!bill.is_active) {
+      if (!bill.is_active && bill.bill_delivery) {
         const item = {
           id: bill.id,
           bill_sub_total: bill.bill_sub_total,
@@ -42,8 +42,64 @@ class BillTable extends React.Component {
           bill_date: bill.bill_date,
           bill_time: bill.bill_time,
           bill_earned_points: bill.bill_earned_points,
-          bill_delivery: bill.bill_delivery,
-          bill_pickup: bill.bill_pickup,
+          bill_delivery: "Si",
+          bill_pickup: "No",
+          is_active: "Inactivo"
+        };
+        lista.push(item);
+      }
+      if (!bill.is_active && bill.bill_pickup) {
+        const item = {
+          id: bill.id,
+          bill_sub_total: bill.bill_sub_total,
+          bill_iva: bill.bill_iva,
+          bill_date: bill.bill_date,
+          bill_time: bill.bill_time,
+          bill_earned_points: bill.bill_earned_points,
+          bill_delivery: "No",
+          bill_pickup: "Si",
+          is_active: "Inactivo"
+        };
+        lista.push(item);
+      }
+      if (bill.is_active && bill.bill_pickup) {
+        const item = {
+          id: bill.id,
+          bill_sub_total: bill.bill_sub_total,
+          bill_iva: bill.bill_iva,
+          bill_date: bill.bill_date,
+          bill_time: bill.bill_time,
+          bill_earned_points: bill.bill_earned_points,
+          bill_delivery: "No",
+          bill_pickup: "Si",
+          is_active: "Activo"
+        };
+        lista.push(item);
+      }
+      if (bill.is_active && !bill.bill_pickup && !bill.bill_delivery) {
+        const item = {
+          id: bill.id,
+          bill_sub_total: bill.bill_sub_total,
+          bill_iva: bill.bill_iva,
+          bill_date: bill.bill_date,
+          bill_time: bill.bill_time,
+          bill_earned_points: bill.bill_earned_points,
+          bill_delivery: "No",
+          bill_pickup: "No",
+          is_active: "Activo"
+        };
+        lista.push(item);
+      }
+      if (!bill.is_active && !bill.bill_pickup && !bill.bill_delivery) {
+        const item = {
+          id: bill.id,
+          bill_sub_total: bill.bill_sub_total,
+          bill_iva: bill.bill_iva,
+          bill_date: bill.bill_date,
+          bill_time: bill.bill_time,
+          bill_earned_points: bill.bill_earned_points,
+          bill_delivery: "No",
+          bill_pickup: "No",
           is_active: "Inactivo"
         };
         lista.push(item);
@@ -53,8 +109,8 @@ class BillTable extends React.Component {
     return (
       <div>
         <Bills data={lista} />
-        <h2>Create Product</h2>
-        <ProductCreateForm requestType="post" btnText="Add" productID={null} />
+        <h2>Compra</h2>
+        <BillCreateForm />
       </div>
     );
   }

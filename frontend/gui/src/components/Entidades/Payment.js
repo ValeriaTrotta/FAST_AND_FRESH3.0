@@ -13,17 +13,17 @@ const columns = [
     key: "payment_amount" + "id"
   },
   {
-    title: "Provider",
+    title: "Metodo",
     dataIndex: "payment_method",
     key: "payment_method" + "id"
   },
   {
-    title: "Producto Especial",
+    title: "Instrumento",
     dataIndex: "payment_method_instrument",
     key: "payment_method_instrument" + "id"
   },
   {
-    title: "Producto Especial",
+    title: "Bill",
     dataIndex: "bill",
     key: "bill" + "id"
   },

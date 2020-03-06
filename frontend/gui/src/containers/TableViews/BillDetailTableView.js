@@ -45,8 +45,6 @@ class BillDetailTable extends React.Component {
     return (
       <div>
         <BillDetails data={lista} />
-        <h2>Create Product</h2>
-        <BillDetailsCreateForm />
       </div>
     );
   }

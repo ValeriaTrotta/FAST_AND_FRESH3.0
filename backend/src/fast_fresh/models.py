@@ -157,7 +157,7 @@ class Bill (models.Model):
         'IVA', on_delete=models.CASCADE, null=False, blank=False, default=None)
     bill_date = models.DateField(auto_now_add=True)
     bill_time = models.TimeField(auto_now_add=True)
-    bill_earned_points = models.IntegerField()
+    bill_earned_points = models.IntegerField(null=True)
     bill_delivery = models.BooleanField()
     bill_pickup = models.BooleanField()
     is_active = models.BooleanField()
@@ -190,7 +190,7 @@ class Payment(models.Model):
     payment_amount = models.FloatField()
     payment_method = models.ForeignKey(
         'PaymentMethod', on_delete=models.CASCADE, null=False, blank=False)
-    payment_method_instrument = models.IntegerField(null=True)
+    payment_method_instrument = models.CharField(max_length=20, null=True)
     bill = models.ForeignKey(
         'Bill', on_delete=models.CASCADE, null=False, blank=False)
     is_active = models.BooleanField()
@@ -198,7 +198,7 @@ class Payment(models.Model):
 
 class PaymentMethod (models.Model):
     payment_method = models.CharField(max_length=20)
-    is_active = models.BooleanField
+    is_active = models.BooleanField()
 
 
 class Currency (models.Model):
@@ -214,7 +214,7 @@ class ExchangeRate (models.Model):
         'Currency', on_delete=models.CASCADE, null=False, blank=False)
     exchange_rate = models.FloatField()
     exchange_rate_date = models.DateField(auto_now_add=True)
-    is_active = models.BooleanField
+    is_active = models.BooleanField()
 
 
 class Employee (models.Model):
