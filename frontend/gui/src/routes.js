@@ -29,7 +29,7 @@ import CashRegisterBillDetail from "./containers/DetailViews/CashRegisterBillDet
 import PaymentTable from "./containers/TableViews/PaymentTableView";
 import PaymentMethodTable from "./containers/TableViews/PaymentMethodTableView";
 import CurrencyTable from "./containers/TableViews/CurrencyTableView";
-import CurrencyDetail from "./containers/DetailViews/CurrencyDetailView"
+import CurrencyDetail from "./containers/DetailViews/CurrencyDetailView";
 import ExchangeRateTable from "./containers/TableViews/ExchangeRateTableView";
 import ExchangeRateDetail from "./containers/DetailViews/ExchangeRateDetailView";
 import EmployeeTable from "./containers/TableViews/EmployeeTableView";
@@ -58,13 +58,10 @@ import ProductAndTypeDetail from "./containers/ProductAndTypeDetailView";
 import ClientDetail from "./containers/DetailViews/ClientDetailView";
 import MemberDetail from "./containers/DetailViews/MemberDetailView";
 import CashRegisterDetail from "./containers/DetailViews/CashRegisterDetailView";
-<<<<<<< HEAD
 import EmployeeDetail from "./containers/DetailViews/EmployeeDetailView";
 import BillDetail from "./containers/DetailViews/BillDetailView";
-=======
 import PickUpDetail from "./containers/DetailViews/PickUpDetailView";
 import HomeView from "./containers/HomeView";
->>>>>>> tutu5
 
 const BaseRouter = () => (
   <div>
@@ -112,17 +109,29 @@ const BaseRouter = () => (
       component={CashRegisterDetail}
     />
     <Route exact path="/cashregisterbill/" component={CashRegisterBillTable} />
-    <Route exact path="/cashregisterbill/:cashregisterbillId" component={CashRegisterBillDetail} />
+    <Route
+      exact
+      path="/cashregisterbill/:cashregisterbillId"
+      component={CashRegisterBillDetail}
+    />
     <Route exact path="/payment/" component={PaymentTable} />
     <Route exact path="/paymentmethod/" component={PaymentMethodTable} />
     <Route exact path="/currency/" component={CurrencyTable} />
     <Route exact path="/currency/:currencyId" component={CurrencyDetail} />
     <Route exact path="/exchangerate/" component={ExchangeRateTable} />
-    <Route exact path="/exchangerate/:exchangerateId" component={ExchangeRateDetail} />
+    <Route
+      exact
+      path="/exchangerate/:exchangerateId"
+      component={ExchangeRateDetail}
+    />
     <Route exact path="/employee/" component={EmployeeTable} />
     <Route exact path="/employee/:employeeId" component={EmployeeDetail} />
     <Route exact path="/employeestore/" component={EmployeeStoreTable} />
-    <Route exact path="/employeestore/:employeestoreId" component={EmployeeStoreDetail} />
+    <Route
+      exact
+      path="/employeestore/:employeestoreId"
+      component={EmployeeStoreDetail}
+    />
     <Route exact path="/job/" component={JobTable} />
     <Route exact path="/job/:jobId" component={JobDetail} />
     <Route exact path="/iva/" component={IVATable} />
@@ -130,7 +139,11 @@ const BaseRouter = () => (
     <Route exact path="/provider/" component={ProviderTable} />
     <Route exact path="/provider/:providerId" component={ProviderDetail} />
     <Route exact path="/providerphone/" component={ProviderPhoneTable} />
-    <Route exact path="/providerphone/:providerphoneId" component={ProviderPhoneDetail} />
+    <Route
+      exact
+      path="/providerphone/:providerphoneId"
+      component={ProviderPhoneDetail}
+    />
     <Route exact path="/top5/" component={Top5Table} />
     <Route exact path="/top5menos/" component={Top5MenosTable} />
     <Route exact path="/top5miembros/" component={Top5MiembrosTable} />
